@@ -1,3 +1,9 @@
+/*
+Created NB 4/2/2020
+Data Structure to store information provided by
+a wikipedia geosearch
+*/
+
 class GeoSearch {
   final int pageid;
   final int ns;

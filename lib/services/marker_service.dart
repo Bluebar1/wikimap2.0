@@ -16,7 +16,7 @@ class MarkerService {
 
       markers.add(marker);
     });
-    print('MARKERS PRINTED OUT' + markers.toString());
+    //print('MARKERS PRINTED OUT' + markers.toString());
     return markers;
   }
 }
