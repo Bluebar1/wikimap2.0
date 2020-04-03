@@ -13,7 +13,9 @@ Uses 'ChangeNotifier' and notifyListeners() to track state of class.
 
 class MapBottomSheetProvider with ChangeNotifier {
   List<Article> _currentArticles;
+  bool _isDoneLoading;
   List<Article> get currentArticles => _currentArticles;
+  bool get isDoneLoading => _isDoneLoading;
 
   final String urlStart =
       "https://en.wikipedia.org/w/api.php?action=query&titles=";
@@ -21,6 +23,7 @@ class MapBottomSheetProvider with ChangeNotifier {
 
   MapBottomSheetProvider(List<GeoSearch> geosearch) {
     _currentArticles = List<Article>();
+    _isDoneLoading = false;
     getAndSetArticles(geosearch);
   }
 
@@ -29,8 +32,18 @@ class MapBottomSheetProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void addArticle(Article article) {
+  void addArticle(Article article, List<GeoSearch> geosearch) {
     _currentArticles.add(article);
+
+    notifyListeners();
+    if (_currentArticles.length == geosearch.length) {
+      setIsDoneLoading();
+    }
+  }
+
+  void setIsDoneLoading() {
+    print('----------==========----------==========isDoneLoading called');
+    _isDoneLoading = true;
     notifyListeners();
   }
 
@@ -42,7 +55,7 @@ class MapBottomSheetProvider with ChangeNotifier {
       var jsonResults = json['query']['pages']['${geo.pageid}'];
       print('=-=-=-=-=-==-=-=-=-=-=-NEW ARTICLE BEING ADDED JSON: ' +
           jsonResults.toString());
-      addArticle(Article.fromJson(jsonResults));
+      addArticle(Article.fromJson(jsonResults), geosearch);
     }
   }
 }

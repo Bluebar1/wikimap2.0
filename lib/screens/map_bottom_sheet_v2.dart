@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:wiki_map/models/geosearch_model.dart';
+import 'package:wiki_map/modules/horizontal_wiki_scroll.dart';
 import 'package:wiki_map/modules/list_view_module.dart';
 import 'package:wiki_map/providers/map_bottom_sheet_provider.dart';
 import 'package:wiki_map/services/marker_service.dart';
@@ -18,6 +19,7 @@ class MapBottomSheetV2 extends StatelessWidget {
     return FutureProvider(
         create: (context) => geoSearchProvider,
         child: Scaffold(
+            backgroundColor: Color.fromRGBO(0, 0, 0, .3),
             body: (currentPosition != null)
                 ? Consumer<List<GeoSearch>>(
                     builder: (_, results, __) {
@@ -28,13 +30,16 @@ class MapBottomSheetV2 extends StatelessWidget {
                           ? ChangeNotifierProvider.value(
                               value: MapBottomSheetProvider(results),
                               child: Container(
-                                decoration: BoxDecoration(color: Colors.cyan),
+                                decoration:
+                                    BoxDecoration(color: Colors.transparent),
                                 child: Consumer<MapBottomSheetProvider>(
                                   builder: (_, provider, __) {
                                     return (provider.currentArticles != null)
-                                        ? ListViewModule(
-                                            provider: provider,
-                                            controller: controller)
+                                        ? HorizontalWikiScroll(
+                                            provider: provider)
+                                        // ListViewModule(
+                                        //     provider: provider,
+                                        //     controller: controller)
                                         : Center(
                                             child: CircularProgressIndicator(),
                                           );

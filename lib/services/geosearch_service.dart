@@ -11,7 +11,7 @@ class GeoSearchService {
             lat.toString() +
             "|" +
             lon.toString() +
-            "&gsradius=10000&gslimit=20&format=json");
+            "&gsradius=10000&gslimit=10&format=json");
     var response = await http.get(_wikiLocationUrlDynamic);
     var json = convert.jsonDecode(response.body);
     var jsonResults = json['query']['geosearch'] as List;

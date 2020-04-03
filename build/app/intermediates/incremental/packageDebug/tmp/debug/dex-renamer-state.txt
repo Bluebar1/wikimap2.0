@@ -1,4 +1,4 @@
-#Fri Apr 03 10:44:53 EDT 2020
+#Fri Apr 03 11:38:36 EDT 2020
 base.0=C\:\\Users\\yupni\\AndroidStudioProjects\\wikimap2\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
