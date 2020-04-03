@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rubber/rubber.dart';
 import 'package:wiki_map/screens/map_bottom_sheet.dart';
+import 'package:wiki_map/screens/map_bottom_sheet_v2.dart';
 import 'package:wiki_map/screens/search.dart';
 
 /*
@@ -44,7 +45,7 @@ class _SheetState extends State<CustomBottomSheet>
       body: RubberBottomSheet(
         scrollController: _scrollController,
         lowerLayer: Search(),
-        upperLayer: MapBottomSheet(),
+        upperLayer: MapBottomSheetV2(controller: _scrollController),
         animationController: _animationController,
         headerHeight: 20,
       ),

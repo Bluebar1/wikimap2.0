@@ -26,8 +26,14 @@ class GeoSearch {
       : pageid = parsedJson['pageid'],
         ns = parsedJson['ns'],
         title = parsedJson['title'],
-        lat = parsedJson['lat'],
-        lon = parsedJson['lon'],
-        dist = parsedJson['dist'],
+        lat = (parsedJson['lat'].runtimeType != int)
+            ? parsedJson['lat']
+            : parsedJson['lat'].toDouble(),
+        lon = (parsedJson['lon'].runtimeType != int)
+            ? parsedJson['lon']
+            : parsedJson['lon'].toDouble(),
+        dist = (parsedJson['dist'].runtimeType != int)
+            ? parsedJson['dist']
+            : parsedJson['dist'].toDouble(),
         primary = parsedJson['primary'];
 }

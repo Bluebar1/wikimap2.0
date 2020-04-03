@@ -40,6 +40,8 @@ class MapBottomSheetProvider with ChangeNotifier {
       var response = await http.get(dynamicUrl); //, headers: headers);
       var json = convert.jsonDecode(response.body);
       var jsonResults = json['query']['pages']['${geo.pageid}'];
+      print('=-=-=-=-=-==-=-=-=-=-=-NEW ARTICLE BEING ADDED JSON: ' +
+          jsonResults.toString());
       addArticle(Article.fromJson(jsonResults));
     }
   }
