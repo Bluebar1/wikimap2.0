@@ -3,17 +3,18 @@ import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 import 'package:wiki_map/providers/geosearch_provider.dart';
 import 'package:wiki_map/providers/permissions_provider.dart';
+import 'package:wiki_map/providers/swiper_index_provider.dart';
 import 'package:wiki_map/screens/bottom_sheet.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var permissionsProvider = Provider.of<PermissionsProvider>(context);
-
+    var swiperIndexProvider = Provider.of<SwiperIndexProvider>(context);
     _startGeoSearch(Position position) {
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => ChangeNotifierProvider.value(
-              value: GeoSearchProvider(position),
+              value: GeoSearchProvider(position, swiperIndexProvider),
               child: Consumer<GeoSearchProvider>(
                 builder: (context, provider, child) {
                   return (provider.currentMarkers != null &&

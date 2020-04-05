@@ -3,6 +3,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:wiki_map/models/geosearch_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:wiki_map/providers/swiper_index_provider.dart';
 import 'dart:convert' as convert;
 
 import 'package:wiki_map/services/marker_service.dart';
@@ -14,6 +15,7 @@ at 'startingPosition', which is passed to this class on creation.
 
 class GeoSearchProvider with ChangeNotifier {
   final Position startingPosition;
+  SwiperIndexProvider swiperIndexProvider;
   final markerService = MarkerService();
   List<GeoSearch> _results; // = List<GeoSearch>();
   List<GeoSearch> get results => _results;
@@ -21,7 +23,7 @@ class GeoSearchProvider with ChangeNotifier {
   List<Marker> _currentMarkers;
   List<Marker> get currentMarkers => _currentMarkers;
 
-  GeoSearchProvider(this.startingPosition) {
+  GeoSearchProvider(this.startingPosition, this.swiperIndexProvider) {
     _results = null;
     _currentMarkers = null;
     getResults(startingPosition);
@@ -58,7 +60,7 @@ class GeoSearchProvider with ChangeNotifier {
 
   void setMarkers(List<GeoSearch> geosearch) {
     _currentMarkers = (geosearch != null)
-        ? markerService.getMarkers(results)
+        ? markerService.getMarkers(results, swiperIndexProvider)
         : List<Marker>();
     notifyListeners();
   }

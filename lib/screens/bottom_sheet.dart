@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:rubber/rubber.dart';
+import 'package:wiki_map/providers/swiper_index_provider.dart';
 import 'package:wiki_map/screens/map_bottom_sheet_v3.dart';
 import 'package:wiki_map/screens/wiki_map_view.dart';
 
@@ -31,8 +33,8 @@ class _SheetState extends State<CustomBottomSheet>
         upperBoundValue: AnimationControllerValue(percentage: .9),
         duration: Duration(milliseconds: 200),
         springDescription: SpringDescription.withDampingRatio(
-          mass: 2.0,
-          stiffness: 200.0,
+          mass: 2.5,
+          stiffness: 250.0,
           ratio: .4,
         ));
     super.initState();
@@ -44,7 +46,9 @@ class _SheetState extends State<CustomBottomSheet>
       body: RubberBottomSheet(
         scrollController: _scrollController,
         lowerLayer: WikiMapView(),
-        upperLayer: MapBottomSheetV3(controller: _scrollController),
+        upperLayer: Container(
+            decoration: BoxDecoration(color: Colors.transparent),
+            child: MapBottomSheetV3(controller: _scrollController)),
         animationController: _animationController,
         headerHeight: 20,
       ),

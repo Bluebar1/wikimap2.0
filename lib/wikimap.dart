@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wiki_map/providers/permissions_provider.dart';
+import 'package:wiki_map/providers/swiper_index_provider.dart';
 import 'package:wiki_map/screens/home_screen.dart';
 import 'package:wiki_map/services/geosearch_service.dart';
 
@@ -18,8 +19,9 @@ class WikiMap extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<PermissionsProvider>(
-          create: (_) => PermissionsProvider(),
-        )
+            create: (_) => PermissionsProvider()),
+        ChangeNotifierProvider<SwiperIndexProvider>(
+            create: (_) => SwiperIndexProvider())
       ],
       child: MaterialApp(home: HomeScreen()),
     );
