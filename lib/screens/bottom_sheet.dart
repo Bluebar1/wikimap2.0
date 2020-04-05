@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rubber/rubber.dart';
-import 'package:wiki_map/screens/map_bottom_sheet.dart';
-import 'package:wiki_map/screens/map_bottom_sheet_v2.dart';
-import 'package:wiki_map/screens/search.dart';
+import 'package:wiki_map/screens/map_bottom_sheet_v3.dart';
+import 'package:wiki_map/screens/wiki_map_view.dart';
 
 /*
 Created NB 4/2/2020
@@ -44,8 +43,8 @@ class _SheetState extends State<CustomBottomSheet>
     return Scaffold(
       body: RubberBottomSheet(
         scrollController: _scrollController,
-        lowerLayer: Search(),
-        upperLayer: MapBottomSheetV2(controller: _scrollController),
+        lowerLayer: WikiMapView(),
+        upperLayer: MapBottomSheetV3(controller: _scrollController),
         animationController: _animationController,
         headerHeight: 20,
       ),

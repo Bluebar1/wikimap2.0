@@ -42,7 +42,6 @@ class MapBottomSheetProvider with ChangeNotifier {
   }
 
   void setIsDoneLoading() {
-    print('----------==========----------==========isDoneLoading called');
     _isDoneLoading = true;
     notifyListeners();
   }
