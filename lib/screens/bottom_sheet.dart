@@ -28,8 +28,8 @@ class _SheetState extends State<CustomBottomSheet>
     _animationController = RubberAnimationController(
         vsync: this,
         dismissable: false,
-        lowerBoundValue: AnimationControllerValue(pixel: 100),
-        halfBoundValue: AnimationControllerValue(pixel: 300),
+        lowerBoundValue: AnimationControllerValue(percentage: .3),
+        halfBoundValue: AnimationControllerValue(percentage: .7),
         upperBoundValue: AnimationControllerValue(percentage: .9),
         duration: Duration(milliseconds: 200),
         springDescription: SpringDescription.withDampingRatio(

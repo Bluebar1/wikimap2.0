@@ -98,6 +98,12 @@
       "languageVersion": "2.1"
     },
     {
+      "name": "flutter_svg",
+      "rootUri": "file:///C:/Users/yupni/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/flutter_svg-0.17.3+1",
+      "packageUri": "lib/",
+      "languageVersion": "2.2"
+    },
+    {
       "name": "flutter_swiper",
       "rootUri": "file:///C:/Users/yupni/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/flutter_swiper-1.1.6",
       "packageUri": "lib/",
@@ -180,6 +186,18 @@
       "rootUri": "file:///C:/Users/yupni/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/path-1.6.4",
       "packageUri": "lib/",
       "languageVersion": "2.0"
+    },
+    {
+      "name": "path_drawing",
+      "rootUri": "file:///C:/Users/yupni/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/path_drawing-0.4.1",
+      "packageUri": "lib/",
+      "languageVersion": "1.19"
+    },
+    {
+      "name": "path_parsing",
+      "rootUri": "file:///C:/Users/yupni/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/path_parsing-0.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "1.19"
     },
     {
       "name": "pedantic",
@@ -320,7 +338,7 @@
       "languageVersion": "2.1"
     }
   ],
-  "generated": "2020-04-03T15:36:43.349546Z",
+  "generated": "2020-04-06T12:46:20.417047Z",
   "generator": "pub",
   "generatorVersion": "2.8.0-dev.17.0.flutter-1402e8e1a4"
 }

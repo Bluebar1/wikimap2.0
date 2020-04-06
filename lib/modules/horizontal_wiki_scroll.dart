@@ -13,6 +13,7 @@ import 'package:wiki_map/modules/no_image_found_module.dart';
 import 'package:wiki_map/modules/wiki_page_info.dart';
 import 'package:wiki_map/providers/map_bottom_sheet_provider.dart';
 import 'package:wiki_map/providers/swiper_index_provider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class HorizontalWikiScroll extends StatelessWidget {
   final MapBottomSheetProvider provider;
@@ -41,17 +42,27 @@ class HorizontalWikiScroll extends StatelessWidget {
                                   null)
                               ? ClipRRect(
                                   borderRadius: BorderRadius.circular(10),
-                                  child: FadeInImage.memoryNetwork(
-                                    placeholder: kTransparentImage,
-                                    image: (provider.currentArticles[index]
-                                                .original !=
-                                            null)
-                                        ? provider.currentArticles[index]
-                                            .original.source
-                                        : 'https://www.solidbackgrounds.com/images/2560x1440/2560x1440-davys-grey-solid-color-background.jpg',
-                                    fadeInDuration: const Duration(seconds: 1),
-                                    fit: BoxFit.cover,
-                                  ),
+                                  child: (provider.currentArticles[index]
+                                          .original.source
+                                          .contains('.svg'))
+                                      ? SvgPicture.network(
+                                          provider.currentArticles[index]
+                                              .original.source,
+                                          fit: BoxFit.cover,
+                                        )
+                                      : FadeInImage.memoryNetwork(
+                                          placeholder: kTransparentImage,
+                                          image: (provider
+                                                      .currentArticles[index]
+                                                      .original !=
+                                                  null)
+                                              ? provider.currentArticles[index]
+                                                  .original.source
+                                              : 'https://www.solidbackgrounds.com/images/2560x1440/2560x1440-davys-grey-solid-color-background.jpg',
+                                          fadeInDuration:
+                                              const Duration(seconds: 1),
+                                          fit: BoxFit.cover,
+                                        ),
                                 )
                               : NoImageFound(
                                   index: index,
