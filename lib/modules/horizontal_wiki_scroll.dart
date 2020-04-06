@@ -38,35 +38,32 @@ class HorizontalWikiScroll extends StatelessWidget {
                       return GestureDetector(
                           onTap: () =>
                               print('${provider.currentArticles[index].title}'),
-                          child: (provider.currentArticles[index].original !=
-                                  null)
-                              ? ClipRRect(
-                                  borderRadius: BorderRadius.circular(10),
-                                  child: (provider.currentArticles[index]
-                                          .original.source
-                                          .contains('.svg'))
-                                      ? SvgPicture.network(
-                                          provider.currentArticles[index]
-                                              .original.source,
-                                          fit: BoxFit.cover,
-                                        )
-                                      : FadeInImage.memoryNetwork(
-                                          placeholder: kTransparentImage,
-                                          image: (provider
-                                                      .currentArticles[index]
-                                                      .original !=
-                                                  null)
-                                              ? provider.currentArticles[index]
-                                                  .original.source
-                                              : 'https://www.solidbackgrounds.com/images/2560x1440/2560x1440-davys-grey-solid-color-background.jpg',
-                                          fadeInDuration:
-                                              const Duration(seconds: 1),
-                                          fit: BoxFit.cover,
-                                        ),
-                                )
-                              : NoImageFound(
-                                  index: index,
-                                ));
+                          child:
+                              (provider.currentArticles[index].original != null)
+                                  ? ClipRRect(
+                                      borderRadius: BorderRadius.circular(10),
+                                      child: (provider.currentArticles[index]
+                                              .original.source
+                                              .contains('.svg'))
+                                          ? SvgPicture.network(
+                                              provider.currentArticles[index]
+                                                  .original.source,
+                                              fit: BoxFit.cover,
+                                            )
+                                          : FadeInImage.memoryNetwork(
+                                              placeholder: kTransparentImage,
+                                              image: provider
+                                                  .currentArticles[index]
+                                                  .original
+                                                  .source,
+                                              fadeInDuration:
+                                                  const Duration(seconds: 1),
+                                              fit: BoxFit.cover,
+                                            ),
+                                    )
+                                  : NoImageFound(
+                                      index: index,
+                                    ));
                     });
                   },
                   itemCount: provider.currentArticles.length,
