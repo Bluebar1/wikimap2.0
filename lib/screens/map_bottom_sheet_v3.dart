@@ -14,11 +14,13 @@ class MapBottomSheetV3 extends StatelessWidget {
     var geosearchProvider = Provider.of<GeoSearchProvider>(context);
     var swiperIndexProvider = Provider.of<SwiperIndexProvider>(context);
     return ChangeNotifierProvider.value(
-      value: MapBottomSheetProvider(geosearchProvider.results, swiperIndexProvider),
+      value: MapBottomSheetProvider(
+          geosearchProvider.results, swiperIndexProvider),
       child: Consumer<MapBottomSheetProvider>(
         builder: (context, mapBottomSheetProvider, child) {
           return (mapBottomSheetProvider.currentArticles != null)
-              ? HorizontalWikiScroll(provider: mapBottomSheetProvider, controller: controller)
+              ? HorizontalWikiScroll(
+                  provider: mapBottomSheetProvider, controller: controller)
               : Center(
                   child: CircularProgressIndicator(),
                 );

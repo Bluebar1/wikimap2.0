@@ -5,6 +5,6 @@ class ImageFileName {
   ImageFileName({this.ns, this.title});
 
   ImageFileName.fromJson(Map<dynamic, dynamic> parsedJson)
-  : ns = parsedJson['ns'],
-  title = parsedJson['title'];
+      : ns = parsedJson['ns'],
+        title = parsedJson['title'];
 }

@@ -30,7 +30,6 @@ class GeoSearchProvider with ChangeNotifier {
   }
 
   void getResults(Position startingPosition) async {
-    print('=-=-=-GET RESULTS CALLED=-=-==-==-');
     String _wikiLocationUrlDynamic = Uri.encodeFull(
         "https://en.wikipedia.org/w/api.php?" +
             "action=query&list=geosearch&gscoord=" +
@@ -41,19 +40,14 @@ class GeoSearchProvider with ChangeNotifier {
     var response = await http.get(_wikiLocationUrlDynamic);
     var json = convert.jsonDecode(response.body);
     var jsonResults = json['query']['geosearch'] as List;
-    print('JSON RESULTS::::::::::::: ${jsonResults.toString()}');
-    print(jsonResults.toString());
     setResults(jsonResults);
   }
 
   void setResults(List<dynamic> jsonResults) {
-    print('-=-=-=-SET RESULTS CALLED=-=-=-===- ${jsonResults.toString()}');
     print(jsonResults.runtimeType);
 
     _results =
         jsonResults.map((geosearch) => GeoSearch.fromJson(geosearch)).toList();
-    print('====================================RESULTS RUNTIME TYPE : ' +
-        _results.runtimeType.toString());
     setMarkers(_results);
     notifyListeners();
   }

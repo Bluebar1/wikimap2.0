@@ -12,58 +12,55 @@ class WikiPageInfo extends StatelessWidget {
   WikiPageInfo({@required this.provider, @required this.controller});
   @override
   Widget build(BuildContext context) {
-    var swiperProvider = Provider.of<SwiperIndexProvider>(context);
-    ScrollController _scrollController = ScrollController();
+    // var swiperProvider = Provider.of<SwiperIndexProvider>(context);
+    // ScrollController _scrollController = ScrollController();
+    var size = MediaQuery.of(context).size;
     return (provider.isPagePicsDoneLoading != false)
-    ? Container( 
-      
-      decoration: BoxDecoration(color: Colors.grey),
-      child: GridView.builder( 
-        physics: NeverScrollableScrollPhysics(),
-        //controller: controller,
-        itemCount: provider.imageUrls.length,
-        shrinkWrap: true,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: 1/1,
-          ),
-          itemBuilder: (context, _index) {
-            return Padding(
-              padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-              child: GestureDetector( 
-                onTap: () => print('${provider.imageUrls[_index]}'),
-                child: FutureBuilder( 
-                  
-                  builder: (context, snapshot) {
-                    return GridTile( 
-                      child: Container( 
-                        //width
-                        //height
-                        child: (provider.imageUrls[_index].contains('svg'))
-                        ? SvgPicture.network(
-                          provider.imageUrls[_index],
-                          fit: BoxFit.scaleDown,
-                        )
-                        : FadeInImage.memoryNetwork( 
-                          placeholder: kTransparentImage,
-                          image: provider.imageUrls[_index],
-                          fadeInDuration: const Duration(milliseconds: 700),
-                          fit: BoxFit.scaleDown,
-                        ),
-                        
-                      ),
-                    );
-                  }
-                ),
+        ? Container(
+            decoration: BoxDecoration(color: Colors.grey),
+            child: GridView.builder(
+              physics: NeverScrollableScrollPhysics(),
+              //controller: controller,
+              itemCount: provider.imageUrls.length,
+              shrinkWrap: true,
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: (size.width) / (size.height / 2),
               ),
-            );
-          },
-      )
-    )
-    : Center(child: Text('waiting'),);
+              itemBuilder: (context, _index) {
+                return Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+                  child: GestureDetector(
+                    onTap: () => print('${provider.imageUrls[_index]}'),
+                    child: FutureBuilder(builder: (context, snapshot) {
+                      return GridTile(
+                        child: Container(
+                          //width
+                          //height
+                          child: (provider.imageUrls[_index].contains('svg'))
+                              ? SvgPicture.network(
+                                  provider.imageUrls[_index],
+                                  fit: BoxFit.fill,
+                                )
+                              : FadeInImage.memoryNetwork(
+                                  placeholder: kTransparentImage,
+                                  image: provider.imageUrls[_index],
+                                  fadeInDuration:
+                                      const Duration(milliseconds: 700),
+                                  fit: BoxFit.fill,
+                                ),
+                        ),
+                      );
+                    }),
+                  ),
+                );
+              },
+            ))
+        : Center(
+            child: Text('waiting'),
+          );
   }
 }
-
 
 /*
 ListView.builder(

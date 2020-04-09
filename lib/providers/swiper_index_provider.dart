@@ -14,7 +14,7 @@ class SwiperIndexProvider with ChangeNotifier {
   }
 
   void changeCurrentIndex(int currentIndex) {
-    print('CHANGE CURRENT INDEX HAS BEEN CALLED');
+    print('CHANGE CURRENT INDEX HAS BEEN CALLED: $currentIndex');
     _currentIndex = currentIndex;
     //notifyListeners();
   }

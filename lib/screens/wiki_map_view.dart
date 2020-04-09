@@ -11,14 +11,16 @@ class WikiMapView extends StatelessWidget {
     var geoSearchProvider = Provider.of<GeoSearchProvider>(context);
     var swiperIndexProvider = Provider.of<SwiperIndexProvider>(context);
     return GoogleMap(
-      initialCameraPosition: CameraPosition(
-          target: LatLng(geoSearchProvider.startingPosition.latitude,
-              geoSearchProvider.startingPosition.longitude),
-          zoom: 16.0),
-      zoomGesturesEnabled: true,
-      markers: Set<Marker>.of(geoSearchProvider.currentMarkers.toList()),
-      onLongPress: (position) => geoSearchProvider.getResults(
-          Position(latitude: position.latitude, longitude: position.longitude)),
-    );
+        initialCameraPosition: CameraPosition(
+            target: LatLng(geoSearchProvider.startingPosition.latitude,
+                geoSearchProvider.startingPosition.longitude),
+            zoom: 16.0),
+        zoomGesturesEnabled: true,
+        markers: Set<Marker>.of(geoSearchProvider.currentMarkers.toList()),
+        onLongPress: (position) {
+          geoSearchProvider.getResults(Position(
+              latitude: position.latitude, longitude: position.longitude));
+          swiperIndexProvider.changeCurrentIndex(0);
+        });
   }
 }
