@@ -16,6 +16,6 @@ class SwiperIndexProvider with ChangeNotifier {
   void changeCurrentIndex(int currentIndex) {
     print('CHANGE CURRENT INDEX HAS BEEN CALLED');
     _currentIndex = currentIndex;
-    notifyListeners();
+    //notifyListeners();
   }
 }
