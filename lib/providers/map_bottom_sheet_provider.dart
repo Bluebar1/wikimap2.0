@@ -14,7 +14,7 @@ When the list of Articles changes.
 Uses 'ChangeNotifier' and notifyListeners() to track state of class.
 */
 
-class MapBottomSheetProvider with ChangeNotifier {
+class MapBottomSheetProvider with ChangeNotifier { 
   //
   List<Article>
       _currentArticles; //stores list of image urls for horizontal swiping
@@ -67,6 +67,13 @@ class MapBottomSheetProvider with ChangeNotifier {
     if (_currentArticles.length == geosearch.length) {
       print(
           'ARTICLES DONE LOADING WITH CURRENT VALUE: ${_currentArticles.toString()}');
+      // _currentArticles.forEach((element) {
+      //   print('Title: ${element.title}');
+      //   (element.original.source != null)
+      //   ? print('${element.original.source}')
+      //   : print('SOURCE IS NULL');
+      // });
+      
       setIsArticlesDoneLoading();
     }
   }
@@ -143,7 +150,10 @@ class MapBottomSheetProvider with ChangeNotifier {
     jsonResults.forEach((key, value) {
       value.forEach((key, value) {
         if (key == 'imageinfo') {
-          templist.add(value[0]['url']);
+          print('i000000 IMAGE URL PRINT OUT: ${value[0]['url']}');
+          (value[0]['url'].contains('.svg'))
+          ? print('NOT ADDED ${value[0]['url']}')
+          : templist.add(value[0]['url']);
           //addImageUrl(value[0]['url']);
         }
       });

@@ -27,81 +27,108 @@ class HorizontalWikiScroll extends StatelessWidget {
     var swiperIndexProvider = Provider.of<SwiperIndexProvider>(context);
     var geosearchProvider = Provider.of<GeoSearchProvider>(context);
     //SwiperController _controller = SwiperController();
-    return ListView(
-        controller: controller,
-        physics: NeverScrollableScrollPhysics(),
-        children: <Widget>[
-          Container(
-              height: 200,
-              child: (provider.isArticlesDoneLoading == true)
-                  ? Swiper(
-                      index: swiperIndexProvider.currentIndex,
-                      //pagination: SwiperPagination(),
-                      controller: swiperIndexProvider.controller,
-                      //index: swiperIndexProvider.currentIndex,
-                      onIndexChanged: (value) {
-                        swiperIndexProvider.changeCurrentIndex(value);
-                        provider.getAndSetPagePics();
-                      },
-                      itemBuilder: (BuildContext context, int index) {
-                        return FutureBuilder(builder: (context, snapshot) {
-                          return GestureDetector(
-                              onTap: () => print(
-                                  '${provider.currentArticles[index].title}'),
-                              child: (provider
-                                          .currentArticles[index].original !=
-                                      null)
-                                  ? ClipRRect(
-                                      borderRadius: BorderRadius.circular(10),
-                                      child: (provider.currentArticles[index]
-                                              .original.source
-                                              .contains('.svg'))
-                                          ? SvgPicture.network(
-                                              provider.currentArticles[index]
-                                                  .original.source,
-                                              fit: BoxFit.cover,
-                                            )
-                                          : FadeInImage.memoryNetwork(
-                                              placeholder: kTransparentImage,
-                                              image: provider
-                                                  .currentArticles[index]
-                                                  .original
-                                                  .source,
-                                              fadeInDuration:
-                                                  const Duration(seconds: 1),
-                                              fit: BoxFit.cover,
-                                            ),
-                                    )
-                                  : NoImageFound(
-                                      index: index,
-                                    ));
-                        });
-                      },
-                      itemCount: provider.currentArticles.length,
-                      viewportFraction: 0.8,
-                      scale: 0.9,
-                    )
-                  : Center(
-                      child: Text('waiting2...'),
-                    )),
-          (provider.isArticlesDoneLoading == true)
-              ? SizedBox(
-                  height: 30,
-                  child: Center(
-                    child: Text(
-                        '${provider.currentArticles[swiperIndexProvider.currentIndex].title}'),
+    return Container(
+      decoration: BoxDecoration( 
+        color: Color.fromRGBO(0, 0, 0, .8),
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20.0),
+          topRight: Radius.circular(20.0)
+        )
+      ),
+      child: ListView(
+          controller: controller,
+          physics: NeverScrollableScrollPhysics(),
+          
+          children: <Widget>[
+            Container(
+                height: 200,
+                child: (provider.isArticlesDoneLoading == true)
+                    ? Swiper(
+                        index: swiperIndexProvider.currentIndex,
+                        //pagination: SwiperPagination(),
+                        controller: swiperIndexProvider.controller,
+                        //index: swiperIndexProvider.currentIndex,
+                        onIndexChanged: (value) {
+                          swiperIndexProvider.changeCurrentIndex(value);
+                          provider.getAndSetPagePics();
+                        },
+                        itemBuilder: (BuildContext context, int index) {
+                          return FutureBuilder(builder: (context, snapshot) {
+                            return GestureDetector(
+                                onTap: () {
+                                  print(
+                                    '${provider.currentArticles[index].title} : ${provider.currentArticles[index].original.source}');
+                                  print( 
+                                    '${provider.currentArticles[swiperIndexProvider.currentIndex].title} : ${provider.currentArticles[swiperIndexProvider.currentIndex].original.source}');
+                                },
+                                child: (provider
+                                            .currentArticles[index].original !=
+                                        null)
+                                    ? ClipRRect(
+                                        borderRadius: BorderRadius.circular(10),
+                                        child: (provider.currentArticles[index]
+                                                .original.source
+                                                .contains('.svg'))
+                                            ? SvgPicture.network(
+                                                provider.currentArticles[index]
+                                                    .original.source,
+                                                fit: BoxFit.cover,
+                                              )
+                                            : FadeInImage.memoryNetwork(
+                                                placeholder: kTransparentImage,
+                                                image: provider
+                                                    .currentArticles[index]
+                                                    .original
+                                                    .source,
+                                                fadeInDuration:
+                                                    const Duration(seconds: 1),
+                                                fit: BoxFit.cover,
+                                              ),
+                                      )
+                                    : NoImageFound(
+                                        index: index,
+                                      ));
+                          });
+                        },
+                        itemCount: provider.currentArticles.length,
+                        viewportFraction: 0.8,
+                        scale: 0.9,
+                      )
+                    : Center(
+                        child: Text('waiting2...'),
+                      )),
+            Container(
+              height: 30,
+              decoration: BoxDecoration( 
+                color: Color.fromRGBO(0, 0, 0, 0),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10.0),
+                  topRight: Radius.circular(10.0)
+                )
+              ),
+            ),
+
+            (provider.isArticlesDoneLoading == true)
+                ? SizedBox(
+                    height: 300,
+                    child: Center(
+                      child: Text(
+                          '${provider.currentArticles[swiperIndexProvider.currentIndex].title}'),
+                    ),
+                  )
+                : SizedBox(
+                    height: 30,
+                    child: Center(child: Text('loading')),
                   ),
-                )
-              : SizedBox(
-                  height: 30,
-                  child: Center(child: Text('loading')),
-                ),
-          (provider.isPagePicsDoneLoading == true)
-              ? WikiPageInfo(provider: provider, controller: controller)
-              : Center(
-                  child: Text('waiting for pics to load'),
-                )
-        ]);
+            
+            (provider.isPagePicsDoneLoading == true)
+                ? WikiPageInfo(provider: provider, controller: controller)
+                : Center(
+                    child: Text('waiting for pics to load'),
+                  ),
+            
+          ]),
+    );
   }
 }
 // ? Container(
