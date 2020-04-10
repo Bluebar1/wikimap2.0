@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -9,26 +11,81 @@ import 'dart:convert' as convert;
 import 'package:wiki_map/services/marker_service.dart';
 /*
 Created NB 4/5/2020
+
 ChangeNotifierProvider class to run a wiki geosearch starting
 at 'startingPosition', which is passed to this class on creation. 
+
+If the user taps the 'Search From Current Location' button it will
+use the location provided by the PermissionsProvider.
+
+If the user long presses a location on the map, it will send that location
+to this class which triggers a chain of events to load all the new information 
+for that search
+
+The map is able to update to the new markers so quickly because it only takes
+one async http.get call to retrieve all the information to rebuild the map
+
+The markers are built as a list by the MarkerService (marker_service.dart)
+and that list is tranformed to a Set<Marker>.of<GeoSearchProvider.currentMarkers> in the widget tree 
 */
 
 class GeoSearchProvider with ChangeNotifier {
   final Position startingPosition;
-  SwiperIndexProvider swiperIndexProvider;
+  final SwiperIndexProvider swiperIndexProvider;
   final markerService = MarkerService();
-  List<GeoSearch> _results; // = List<GeoSearch>();
+  //
+  List<GeoSearch> _results;
   List<GeoSearch> get results => _results;
-
+  //
   List<Marker> _currentMarkers;
   List<Marker> get currentMarkers => _currentMarkers;
-
+  //
+  Completer<GoogleMapController> _controller = Completer();
+  Completer<GoogleMapController> get controller => _controller;
+  //
+  CameraPosition _position;
+  CameraPosition get position => _position;
+  //
   GeoSearchProvider(this.startingPosition, this.swiperIndexProvider) {
+    //_controller = Completer();
     _results = null;
     _currentMarkers = null;
+    _position = null;
     getResults(startingPosition);
+    //_controller.complete();
   }
 
+  void createController(GoogleMapController controller) {
+    _controller.complete(controller);
+  }
+
+  void changeCurrentMarker() async {
+    print('CHANGE CURRENT MARKER CALLED');
+    final GoogleMapController cont = await _controller.future;
+    print('CONT ------------ ${cont.toString()}');
+    LatLng latLng = LatLng(_results[swiperIndexProvider.currentIndex].lat,
+        _results[swiperIndexProvider.currentIndex].lon);
+    print('LAT LAND ++++++++++++++ ${latLng.toString()}');
+    //cont.animateCamera(CameraUpdate.newLatLng(latLng));
+    CameraPosition newtPosition = CameraPosition(
+      target: latLng,
+      zoom: _position.zoom,
+    );
+    cont.animateCamera(CameraUpdate.newCameraPosition(newtPosition));
+  }
+
+  void changeCurrentCameraPosition(CameraPosition position) {
+    //print('CHANGE CURRENT POSITION CALLED');
+    _position = position;
+  }
+
+  /*
+  Param: Position object that contains latitude and longitude
+  Returns: void
+  Use: Build a Url with the information provided by the position
+    and make an async http call to recieve a list of geosearch objects.
+    send the results to setResults
+  */
   void getResults(Position startingPosition) async {
     String _wikiLocationUrlDynamic = Uri.encodeFull(
         "https://en.wikipedia.org/w/api.php?" +
@@ -43,6 +100,15 @@ class GeoSearchProvider with ChangeNotifier {
     setResults(jsonResults);
   }
 
+  /*
+  Param: List of objects of any type
+  Returns: void
+  Use: Changes the _results member variable to a List<GeoSearch>
+    created by mapping the results, then using that map to create 
+    GeoSearch objects (geosearch_model.dart) with the fromJson function.
+  
+  TODO: (nb) check if notifyListeners() is needed 
+  */
   void setResults(List<dynamic> jsonResults) {
     print(jsonResults.runtimeType);
 
@@ -52,6 +118,14 @@ class GeoSearchProvider with ChangeNotifier {
     notifyListeners();
   }
 
+  /*
+  Param: List of geosearch objects
+  Returns: void
+  Use: If the list provided is null, an empty List<Marker> object will 
+    be created. If != null the MarkerService (marker_service.dart) will
+    be used to convert the geosearch results to Marker objects.
+    Notifies Listeners in widget tree relying on this data
+  */
   void setMarkers(List<GeoSearch> geosearch) {
     _currentMarkers = (geosearch != null)
         ? markerService.getMarkers(results, swiperIndexProvider)

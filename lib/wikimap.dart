@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wiki_map/providers/permissions_provider.dart';
 import 'package:wiki_map/providers/swiper_index_provider.dart';
+import 'package:wiki_map/providers/theme_provider.dart';
 import 'package:wiki_map/screens/home_screen.dart';
 import 'package:wiki_map/services/geosearch_service.dart';
+import 'package:wiki_map/style.dart';
 
 /*
 Created NB 4/2/2020
@@ -16,6 +18,7 @@ class WikiMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var themeProvider = Provider.of<ThemeProvider>(context);
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<PermissionsProvider>(
@@ -23,7 +26,9 @@ class WikiMap extends StatelessWidget {
         ChangeNotifierProvider<SwiperIndexProvider>(
             create: (_) => SwiperIndexProvider())
       ],
-      child: MaterialApp(home: HomeScreen()),
+      child: MaterialApp(
+          theme: ThemeData(textTheme: TextTheme(bodyText1: ModuleTextStyle)),
+          home: HomeScreen()),
     );
   }
 }
