@@ -51,7 +51,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/
+    - assets/fonts/
+    - assets/map_style/
 
   fonts:
     - family: Montserrat

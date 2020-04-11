@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:wiki_map/providers/map_bottom_sheet_provider.dart';
+import 'package:wiki_map/screens/image_view.dart';
 
 /*
 Created NB 4/10/2020
@@ -22,6 +23,15 @@ class WikiPageInfo extends StatelessWidget {
   WikiPageInfo({@required this.provider, @required this.controller});
   @override
   Widget build(BuildContext context) {
+    //
+    void _viewImage(MapBottomSheetProvider provider, int index) {
+      provider.createPhotoViewController();
+      provider.setIndexOfImageTapped(index);
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => ChangeNotifierProvider.value(
+              value: provider, child: ImageView())));
+    }
+
     var mapBottomSheetProvider = Provider.of<MapBottomSheetProvider>(context);
     var size = MediaQuery.of(context).size;
     return Container(
@@ -40,8 +50,8 @@ class WikiPageInfo extends StatelessWidget {
                   return FutureBuilder(
                     builder: (context, snapshot) {
                       return GestureDetector(
-                          onTap: () => print(
-                              '${mapBottomSheetProvider.imageUrls[index]}'),
+                          onTap: () =>
+                              _viewImage(mapBottomSheetProvider, index),
                           child: GridTile(
                               child: (provider.imageUrls[index].contains('svg'))
                                   ? SvgPicture.network(

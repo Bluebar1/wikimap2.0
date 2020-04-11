@@ -11,20 +11,15 @@ import 'dart:convert' as convert;
 import 'package:wiki_map/services/marker_service.dart';
 /*
 Created NB 4/5/2020
-
 ChangeNotifierProvider class to run a wiki geosearch starting
 at 'startingPosition', which is passed to this class on creation. 
-
 If the user taps the 'Search From Current Location' button it will
 use the location provided by the PermissionsProvider.
-
 If the user long presses a location on the map, it will send that location
 to this class which triggers a chain of events to load all the new information 
 for that search
-
 The map is able to update to the new markers so quickly because it only takes
 one async http.get call to retrieve all the information to rebuild the map
-
 The markers are built as a list by the MarkerService (marker_service.dart)
 and that list is tranformed to a Set<Marker>.of<GeoSearchProvider.currentMarkers> in the widget tree 
 */
@@ -50,7 +45,9 @@ class GeoSearchProvider with ChangeNotifier {
     //_controller = Completer();
     _results = null;
     _currentMarkers = null;
-    _position = null;
+    _position = CameraPosition(
+        target: LatLng(startingPosition.latitude, startingPosition.longitude),
+        zoom: 14);
     getResults(startingPosition);
     //_controller.complete();
   }

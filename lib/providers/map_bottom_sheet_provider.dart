@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
 import 'package:wiki_map/models/article_model.dart';
 import 'package:wiki_map/models/geosearch_model.dart';
 import 'package:http/http.dart' as http;
@@ -33,6 +34,15 @@ class MapBottomSheetProvider with ChangeNotifier {
   //list of summary of each wiki page in geosearch
   List<String> _summaries;
   List<String> get summaries => _summaries;
+  //
+  PhotoViewController _photoViewController;
+  PhotoViewController get photoViewController => _photoViewController;
+  //
+  double _scale;
+  double get scale => _scale;
+  //
+  int _indexOfImageTapped;
+  int get indexOfImageTapped => _indexOfImageTapped;
 
   //url for finding each original image of the page
   final String urlStart =
@@ -53,6 +63,25 @@ class MapBottomSheetProvider with ChangeNotifier {
     getAndSetArticles();
     getAndSetPagePics(); //geosearch);
     getAndSetSummaries();
+  }
+
+//=====================================================================================
+  // SECTION FOR HANDLING DATA NEEDED FOR FULL SCREEN IMAGE VIEW
+  //=====================================================================================
+
+  void createPhotoViewController() {
+    //_photoViewController = PhotoViewController();
+    _photoViewController = PhotoViewController()
+      ..outputStateStream.listen(listener);
+  }
+
+  void listener(PhotoViewControllerValue val) {
+    _scale = val.scale;
+    notifyListeners();
+  }
+
+  void setIndexOfImageTapped(int index) {
+    _indexOfImageTapped = index;
   }
 
   //=====================================================================================
@@ -175,7 +204,7 @@ class MapBottomSheetProvider with ChangeNotifier {
       value.forEach((key, value) {
         if (key == 'imageinfo') {
           print('IMAGE URL PRINT OUT: ${value[0]['url']}');
-          (value[0]['url'].contains('.svg'))
+          (value[0]['url'].contains('.svg') || value[0]['url'].contains('.tif'))
               ? print('NOT ADDED ${value[0]['url']}')
               : templist.add(value[0]['url']);
         }

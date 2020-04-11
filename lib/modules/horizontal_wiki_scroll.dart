@@ -3,6 +3,7 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 import 'package:wiki_map/modules/no_image_found_module.dart';
+import 'package:wiki_map/modules/wiki_action_buttons.dart';
 import 'package:wiki_map/modules/wiki_page_info.dart';
 import 'package:wiki_map/providers/geosearch_provider.dart';
 import 'package:wiki_map/providers/map_bottom_sheet_provider.dart';
@@ -23,10 +24,18 @@ class HorizontalWikiScroll extends StatelessWidget {
   final MapBottomSheetProvider provider;
   final ScrollController controller;
   HorizontalWikiScroll({@required this.provider, @required this.controller});
+
   @override
   Widget build(BuildContext context) {
     var swiperIndexProvider = Provider.of<SwiperIndexProvider>(context);
     var geosearchProvider = Provider.of<GeoSearchProvider>(context);
+
+    //   void _viewWikiPage() {
+    //   Navigator.of(context).push(MaterialPageRoute(
+    //       builder: (context) => ImageView()
+    //       ));
+    // }
+
     return Container(
       decoration: BoxDecoration(
           color: Color.fromRGBO(0, 0, 0, .9),
@@ -92,9 +101,21 @@ class HorizontalWikiScroll extends StatelessWidget {
                     : Center(
                         child: Text('waiting2...'),
                       )),
-            SizedBox(
-              height: 40,
-            ),
+            (provider.isArticlesDoneLoading == true)
+                ? SizedBox(
+                    height: 40,
+                    child: Center(
+                      child: Text(
+                        '${provider.currentArticles[swiperIndexProvider.currentIndex].title}',
+                        style: Theme.of(context).textTheme.bodyText1,
+                      ),
+                    ),
+                  )
+                : Container(),
+            (provider.isArticlesDoneLoading == true)
+                ? WikiActionButtons()
+                : Container(),
+            SizedBox(height: 30),
             (provider.summaries.length == geosearchProvider.results.length)
                 ? Column(
                     children: <Widget>[
@@ -121,18 +142,15 @@ class HorizontalWikiScroll extends StatelessWidget {
                     ],
                   )
                 : Center(child: Text('waiting')),
-            (provider.isArticlesDoneLoading == true)
-                ? SizedBox(
-                    height: 300,
-                    child: Center(
-                      child: Text(
-                          '${provider.currentArticles[swiperIndexProvider.currentIndex].title}'),
+            SizedBox(height: 40),
+            (provider.isPagePicsDoneLoading == true)
+                ? Center(
+                    child: Text(
+                      '${provider.imageUrls.length} Images Found for ${provider.currentArticles[swiperIndexProvider.currentIndex].title}',
+                      style: Theme.of(context).textTheme.bodyText1,
                     ),
                   )
-                : SizedBox(
-                    height: 30,
-                    child: Center(child: Text('loading')),
-                  ),
+                : Container(),
             (provider.isPagePicsDoneLoading == true)
                 ? WikiPageInfo(provider: provider, controller: controller)
                 : Center(
