@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:photo_view/photo_view.dart';
+import 'package:rubber/rubber.dart';
 import 'package:wiki_map/models/article_model.dart';
 import 'package:wiki_map/models/geosearch_model.dart';
 import 'package:http/http.dart' as http;
@@ -43,6 +44,7 @@ class MapBottomSheetProvider with ChangeNotifier {
   //
   int _indexOfImageTapped;
   int get indexOfImageTapped => _indexOfImageTapped;
+  //
 
   //url for finding each original image of the page
   final String urlStart =
@@ -51,8 +53,10 @@ class MapBottomSheetProvider with ChangeNotifier {
   //
   final List<GeoSearch> geosearch;
   final SwiperIndexProvider swiperIndexProvider;
+  final RubberAnimationController animationControler;
   //
-  MapBottomSheetProvider(this.geosearch, this.swiperIndexProvider) {
+  MapBottomSheetProvider(
+      this.geosearch, this.swiperIndexProvider, this.animationControler) {
     print(
         'MAP SHEET PROVIDER CALLED, SWIPER INDEX= ${swiperIndexProvider.currentIndex}');
     _currentArticles = List<Article>(); //initialize empty lists to be filled

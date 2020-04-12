@@ -25,7 +25,7 @@ class MarkerService {
   }
 
   void updateBottomSheet(int index, SwiperIndexProvider swiperIndexProvider) {
+    swiperIndexProvider.controller.move(index, animation: false);
     swiperIndexProvider.changeCurrentIndex(index);
-    swiperIndexProvider.controller.move(index);
   }
 }

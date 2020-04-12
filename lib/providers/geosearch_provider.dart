@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:rubber/rubber.dart';
 import 'package:wiki_map/models/geosearch_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:wiki_map/providers/swiper_index_provider.dart';
@@ -41,34 +42,80 @@ class GeoSearchProvider with ChangeNotifier {
   CameraPosition _position;
   CameraPosition get position => _position;
   //
+  RubberAnimationController _rubberAnimationController;
+  RubberAnimationController get rubberAnimationController =>
+      _rubberAnimationController;
+  //
   GeoSearchProvider(this.startingPosition, this.swiperIndexProvider) {
     //_controller = Completer();
     _results = null;
     _currentMarkers = null;
     _position = CameraPosition(
-        target: LatLng(startingPosition.latitude, startingPosition.longitude),
-        zoom: 14);
+        target: LatLng(
+            startingPosition.latitude - 0.0015, startingPosition.longitude),
+        zoom: 16.0);
     getResults(startingPosition);
     //_controller.complete();
   }
 
+  void setRubberAnimationController(RubberAnimationController controller) {
+    print('SET RUBBER ANIMATION CONTROLLER HAS BEEN CALLED');
+    print('${controller.animationState.value}');
+    _rubberAnimationController = controller;
+  }
+
   void createController(GoogleMapController controller) {
     _controller.complete(controller);
+    controller
+        .showMarkerInfoWindow(MarkerId('${swiperIndexProvider.currentIndex}'));
   }
 
   void changeCurrentMarker() async {
     print('CHANGE CURRENT MARKER CALLED');
     final GoogleMapController cont = await _controller.future;
     print('CONT ------------ ${cont.toString()}');
-    LatLng latLng = LatLng(_results[swiperIndexProvider.currentIndex].lat,
-        _results[swiperIndexProvider.currentIndex].lon);
+    LatLng latLng = LatLng(
+        getDynamicLatitude(), _results[swiperIndexProvider.currentIndex].lon);
     print('LAT LAND ++++++++++++++ ${latLng.toString()}');
     //cont.animateCamera(CameraUpdate.newLatLng(latLng));
-    CameraPosition newtPosition = CameraPosition(
-      target: latLng,
-      zoom: _position.zoom,
-    );
+    CameraPosition newtPosition =
+        CameraPosition(target: latLng, zoom: 16 //_position.zoom,
+            );
+    cont.showMarkerInfoWindow(MarkerId('${swiperIndexProvider.currentIndex}'));
     cont.animateCamera(CameraUpdate.newCameraPosition(newtPosition));
+  }
+
+  double getDynamicLatitude() {
+    switch (_rubberAnimationController.animationState.value) {
+      case AnimationState.collapsed:
+        {
+          return _results[swiperIndexProvider.currentIndex].lat - 0.0015;
+        }
+        break;
+
+      case AnimationState.half_expanded:
+        {
+          return _results[swiperIndexProvider.currentIndex].lat - 0.0033;
+        }
+        break;
+
+      case AnimationState.expanded:
+        {
+          return _results[swiperIndexProvider.currentIndex].lat - 0.005;
+        }
+        break;
+
+      case AnimationState.animating:
+        {
+          return _results[swiperIndexProvider.currentIndex].lat;
+        }
+        break;
+
+      default:
+        {
+          return _results[swiperIndexProvider.currentIndex].lat;
+        }
+    }
   }
 
   void changeCurrentCameraPosition(CameraPosition position) {

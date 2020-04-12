@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rubber/rubber.dart';
+import 'package:wiki_map/providers/geosearch_provider.dart';
 import 'package:wiki_map/providers/swiper_index_provider.dart';
 import 'package:wiki_map/screens/map_bottom_sheet_v3.dart';
 import 'package:wiki_map/screens/wiki_map_view.dart';
@@ -28,9 +29,9 @@ class _SheetState extends State<CustomBottomSheet>
     _animationController = RubberAnimationController(
         vsync: this,
         dismissable: false,
-        lowerBoundValue: AnimationControllerValue(percentage: .3),
-        halfBoundValue: AnimationControllerValue(percentage: .7),
-        upperBoundValue: AnimationControllerValue(percentage: .9),
+        lowerBoundValue: AnimationControllerValue(percentage: .35),
+        halfBoundValue: AnimationControllerValue(percentage: .6),
+        upperBoundValue: AnimationControllerValue(percentage: .85),
         duration: Duration(milliseconds: 200),
         springDescription: SpringDescription.withDampingRatio(
           mass: 2.5,
@@ -42,13 +43,17 @@ class _SheetState extends State<CustomBottomSheet>
 
   @override
   Widget build(BuildContext context) {
+    var geosearchProvider = Provider.of<GeoSearchProvider>(context);
+    geosearchProvider.setRubberAnimationController(_animationController);
     return Scaffold(
       body: RubberBottomSheet(
         scrollController: _scrollController,
         lowerLayer: WikiMapView(),
         upperLayer: Container(
             decoration: BoxDecoration(color: Colors.transparent),
-            child: MapBottomSheetV3(controller: _scrollController)),
+            child: MapBottomSheetV3(
+                controller: _scrollController,
+                animationController: _animationController)),
         animationController: _animationController,
         headerHeight: 20,
       ),
