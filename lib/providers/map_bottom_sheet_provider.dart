@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:photo_view/photo_view.dart';
 import 'package:rubber/rubber.dart';
 import 'package:wiki_map/models/article_model.dart';
 import 'package:wiki_map/models/geosearch_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
+import 'package:geocoder/geocoder.dart';
+import 'package:geocoder/services/base.dart';
 
 import 'package:wiki_map/models/image_file_name_model.dart';
 import 'package:wiki_map/providers/swiper_index_provider.dart';
@@ -45,6 +48,10 @@ class MapBottomSheetProvider with ChangeNotifier {
   int _indexOfImageTapped;
   int get indexOfImageTapped => _indexOfImageTapped;
   //
+  Placemark _currentAddress;
+  Placemark get currentAddress => _currentAddress;
+  //
+  Geolocator geolocator = Geolocator();
 
   //url for finding each original image of the page
   final String urlStart =
@@ -65,8 +72,34 @@ class MapBottomSheetProvider with ChangeNotifier {
     _isArticlesDoneLoading = false;
     _isPagePicsDoneLoading = false;
     getAndSetArticles();
+    getAndSetAddress();
     getAndSetPagePics(); //geosearch);
     getAndSetSummaries();
+  }
+
+  void getAndSetAddress() async {
+    _currentAddress = null;
+    print('GET AND SET ADDRESS HAS BEEN CALLED');
+    var result = await geolocator.placemarkFromCoordinates(
+        geosearch[swiperIndexProvider.currentIndex].lat,
+        geosearch[swiperIndexProvider.currentIndex].lon);
+    _currentAddress = result[0];
+    notifyListeners();
+    print(result[0].subThoroughfare);
+    print(result[0].thoroughfare);
+    print(result[0].locality);
+    print(result[0].country);
+    print(result[0].postalCode);
+  }
+
+  String addressToStringTop(Placemark placemark) {
+    return '${placemark.subThoroughfare} ' + '${placemark.thoroughfare}';
+  }
+
+  String addressToStringBottom(Placemark placemark) {
+    return '${placemark.locality}, ' +
+        '${placemark.country}, ' +
+        '${placemark.postalCode} ';
   }
 
 //=====================================================================================

@@ -23,21 +23,19 @@ class WikiPageInfo extends StatelessWidget {
   WikiPageInfo({@required this.provider, @required this.controller});
   @override
   Widget build(BuildContext context) {
-    var mapBottomSheetProvider = Provider.of<MapBottomSheetProvider>(context);
-    var size = MediaQuery.of(context).size;
     //
     void _viewImage(MapBottomSheetProvider provider, int index) {
       provider.createPhotoViewController();
       provider.setIndexOfImageTapped(index);
-      Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => ImageView(mapBottomSheetProvider)));
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => ImageView(provider)));
       // Navigator.of(context).push(MaterialPageRoute(
       //     builder: (context) => ChangeNotifierProvider.value(
       //         value: provider, child: ImageView())));
     }
 
-    // var mapBottomSheetProvider = Provider.of<MapBottomSheetProvider>(context);
-    // var size = MediaQuery.of(context).size;
+    var mapBottomSheetProvider = Provider.of<MapBottomSheetProvider>(context);
+    var size = MediaQuery.of(context).size;
     return Container(
         decoration: BoxDecoration(color: Color.fromRGBO(0, 0, 0, .0)),
         child: (provider.isPagePicsDoneLoading == true)

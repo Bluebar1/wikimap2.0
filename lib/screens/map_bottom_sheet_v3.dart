@@ -21,7 +21,7 @@ class MapBottomSheetV3 extends StatelessWidget {
           geosearchProvider.results, swiperIndexProvider, animationController),
       child: Consumer<MapBottomSheetProvider>(
         builder: (context, mapBottomSheetProvider, child) {
-          return (mapBottomSheetProvider.currentArticles != null)
+          return (mapBottomSheetProvider.isArticlesDoneLoading == true)
               ? HorizontalWikiScroll(
                   provider: mapBottomSheetProvider, controller: controller)
               : Center(

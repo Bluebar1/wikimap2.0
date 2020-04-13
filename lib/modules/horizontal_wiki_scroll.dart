@@ -72,6 +72,7 @@ class HorizontalWikiScroll extends StatelessWidget {
                                 onIndexChanged: (value) {
                                   swiperIndexProvider.changeCurrentIndex(value);
                                   provider.getAndSetPagePics();
+                                  provider.getAndSetAddress();
                                   geosearchProvider.changeCurrentMarker();
                                 },
                                 itemBuilder: (BuildContext context, int index) {
@@ -136,6 +137,27 @@ class HorizontalWikiScroll extends StatelessWidget {
                               child: Text(
                                 '${provider.currentArticles[swiperIndexProvider.currentIndex].title}',
                                 style: Theme.of(context).textTheme.bodyText1,
+                              ),
+                            ),
+                          )
+                        : Container(),
+                    (provider.currentAddress != null)
+                        ? SizedBox(
+                            height: 40,
+                            child: Center(
+                              child: Column(
+                                children: <Widget>[
+                                  Text(
+                                    '${provider.addressToStringTop(provider.currentAddress)} ',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
+                                  ),
+                                  Text(
+                                    '${provider.addressToStringBottom(provider.currentAddress)} ',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
+                                  ),
+                                ],
                               ),
                             ),
                           )

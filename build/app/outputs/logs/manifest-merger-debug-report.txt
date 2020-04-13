@@ -6,18 +6,19 @@ INJECTED from C:\Users\yupni\AndroidStudioProjects\wikimap2.0\android\app\src\ma
 INJECTED from C:\Users\yupni\AndroidStudioProjects\wikimap2.0\android\app\src\main\AndroidManifest.xml:1:1-30:12
 MERGED from C:\Users\yupni\AndroidStudioProjects\wikimap2.0\android\app\src\main\AndroidManifest.xml:1:1-30:12
 MERGED from [:geolocator] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\geolocator\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-9:12
-MERGED from [:location_permissions] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\location_permissions\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:google_api_availability] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\google_api_availability\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:google_maps_flutter] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\google_maps_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:flutter_plugin_android_lifecycle] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
+MERGED from [:geocoder] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\geocoder\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences_web] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\shared_preferences_web\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:shared_preferences_macos] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\shared_preferences_macos\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
-MERGED from [:google_maps_flutter] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\google_maps_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
-MERGED from [:flutter_plugin_android_lifecycle] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
-MERGED from [:google_api_availability] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\google_api_availability\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\6b9b7fc1ad481537ed0a66d62976ec46\play-services-maps-17.0.0\AndroidManifest.xml:17:1-38:12
+MERGED from [:location_permissions] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\location_permissions\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\fc1c508bc0588cc5841af083ba429acf\jetified-play-services-location-16.0.0\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\6b9b7fc1ad481537ed0a66d62976ec46\play-services-maps-17.0.0\AndroidManifest.xml:17:1-38:12
 MERGED from [com.google.android.gms:play-services-base:17.2.1] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\f81e9fffe318fdc5660099e12e35729e\play-services-base-17.2.1\AndroidManifest.xml:17:1-29:12
-MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\5c697fec7e55e9bb60005789c206ab6c\play-services-places-placereport-16.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-tasks:17.0.2] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\32e01e3a0b7905dca7a358a9820047fe\play-services-tasks-17.0.2\AndroidManifest.xml:2:1-9:12
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\5c697fec7e55e9bb60005789c206ab6c\play-services-places-placereport-16.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-basement:17.2.1] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\3375e0d803885d951a606a55ee549add\jetified-play-services-basement-17.2.1\AndroidManifest.xml:17:1-28:12
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\0986d0d74b8a2c7da8161f6370fc7744\fragment-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.activity:activity:1.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\615cab8ad6393a9c868d48761bbea666\activity-1.0.0\AndroidManifest.xml:17:1-24:12
@@ -52,16 +53,16 @@ INJECTED from C:\Users\yupni\AndroidStudioProjects\wikimap2.0\android\app\src\de
 		ADDED from C:\Users\yupni\AndroidStudioProjects\wikimap2.0\android\app\src\main\AndroidManifest.xml:1:11-69
 application
 ADDED from C:\Users\yupni\AndroidStudioProjects\wikimap2.0\android\app\src\main\AndroidManifest.xml:7:3-29:17
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\6b9b7fc1ad481537ed0a66d62976ec46\play-services-maps-17.0.0\AndroidManifest.xml:30:5-36:19
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\6b9b7fc1ad481537ed0a66d62976ec46\play-services-maps-17.0.0\AndroidManifest.xml:30:5-36:19
 MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\fc1c508bc0588cc5841af083ba429acf\jetified-play-services-location-16.0.0\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\fc1c508bc0588cc5841af083ba429acf\jetified-play-services-location-16.0.0\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\6b9b7fc1ad481537ed0a66d62976ec46\play-services-maps-17.0.0\AndroidManifest.xml:30:5-36:19
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\6b9b7fc1ad481537ed0a66d62976ec46\play-services-maps-17.0.0\AndroidManifest.xml:30:5-36:19
 MERGED from [com.google.android.gms:play-services-base:17.2.1] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\f81e9fffe318fdc5660099e12e35729e\play-services-base-17.2.1\AndroidManifest.xml:22:5-27:19
 MERGED from [com.google.android.gms:play-services-base:17.2.1] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\f81e9fffe318fdc5660099e12e35729e\play-services-base-17.2.1\AndroidManifest.xml:22:5-27:19
-MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\5c697fec7e55e9bb60005789c206ab6c\play-services-places-placereport-16.0.0\AndroidManifest.xml:22:5-20
-MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\5c697fec7e55e9bb60005789c206ab6c\play-services-places-placereport-16.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-tasks:17.0.2] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\32e01e3a0b7905dca7a358a9820047fe\play-services-tasks-17.0.2\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-tasks:17.0.2] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\32e01e3a0b7905dca7a358a9820047fe\play-services-tasks-17.0.2\AndroidManifest.xml:7:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\5c697fec7e55e9bb60005789c206ab6c\play-services-places-placereport-16.0.0\AndroidManifest.xml:22:5-20
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\5c697fec7e55e9bb60005789c206ab6c\play-services-places-placereport-16.0.0\AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.gms:play-services-basement:17.2.1] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\3375e0d803885d951a606a55ee549add\jetified-play-services-basement-17.2.1\AndroidManifest.xml:22:5-26:19
 MERGED from [com.google.android.gms:play-services-basement:17.2.1] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\3375e0d803885d951a606a55ee549add\jetified-play-services-basement-17.2.1\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.core:core:1.2.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\b6252bb7f30c7dceb20e97dfa6dfae00\core-1.2.0\AndroidManifest.xml:24:5-89
@@ -130,30 +131,32 @@ INJECTED from C:\Users\yupni\AndroidStudioProjects\wikimap2.0\android\app\src\ma
 INJECTED from C:\Users\yupni\AndroidStudioProjects\wikimap2.0\android\app\src\main\AndroidManifest.xml
 MERGED from [:geolocator] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\geolocator\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:geolocator] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\geolocator\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:location_permissions] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\location_permissions\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:location_permissions] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\location_permissions\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:google_api_availability] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\google_api_availability\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:google_api_availability] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\google_api_availability\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:google_maps_flutter] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\google_maps_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:google_maps_flutter] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\google_maps_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:flutter_plugin_android_lifecycle] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:geocoder] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\geocoder\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:geocoder] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\geocoder\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\shared_preferences\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences_web] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\shared_preferences_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences_web] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\shared_preferences_web\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences_macos] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\shared_preferences_macos\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:shared_preferences_macos] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\shared_preferences_macos\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:google_maps_flutter] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\google_maps_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:google_maps_flutter] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\google_maps_flutter\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:flutter_plugin_android_lifecycle] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:flutter_plugin_android_lifecycle] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\flutter_plugin_android_lifecycle\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:google_api_availability] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\google_api_availability\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [:google_api_availability] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\google_api_availability\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\6b9b7fc1ad481537ed0a66d62976ec46\play-services-maps-17.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\6b9b7fc1ad481537ed0a66d62976ec46\play-services-maps-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [:location_permissions] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\location_permissions\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:location_permissions] C:\Users\yupni\AndroidStudioProjects\wikimap2.0\build\location_permissions\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\fc1c508bc0588cc5841af083ba429acf\jetified-play-services-location-16.0.0\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:16.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\fc1c508bc0588cc5841af083ba429acf\jetified-play-services-location-16.0.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\6b9b7fc1ad481537ed0a66d62976ec46\play-services-maps-17.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-maps:17.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\6b9b7fc1ad481537ed0a66d62976ec46\play-services-maps-17.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-base:17.2.1] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\f81e9fffe318fdc5660099e12e35729e\play-services-base-17.2.1\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-base:17.2.1] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\f81e9fffe318fdc5660099e12e35729e\play-services-base-17.2.1\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\5c697fec7e55e9bb60005789c206ab6c\play-services-places-placereport-16.0.0\AndroidManifest.xml:20:5-44
-MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\5c697fec7e55e9bb60005789c206ab6c\play-services-places-placereport-16.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-tasks:17.0.2] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\32e01e3a0b7905dca7a358a9820047fe\play-services-tasks-17.0.2\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-tasks:17.0.2] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\32e01e3a0b7905dca7a358a9820047fe\play-services-tasks-17.0.2\AndroidManifest.xml:5:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\5c697fec7e55e9bb60005789c206ab6c\play-services-places-placereport-16.0.0\AndroidManifest.xml:20:5-44
+MERGED from [com.google.android.gms:play-services-places-placereport:16.0.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\5c697fec7e55e9bb60005789c206ab6c\play-services-places-placereport-16.0.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-basement:17.2.1] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\3375e0d803885d951a606a55ee549add\jetified-play-services-basement-17.2.1\AndroidManifest.xml:20:5-44
 MERGED from [com.google.android.gms:play-services-basement:17.2.1] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\3375e0d803885d951a606a55ee549add\jetified-play-services-basement-17.2.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.fragment:fragment:1.1.0] C:\Users\yupni\.gradle\caches\transforms-2\files-2.1\0986d0d74b8a2c7da8161f6370fc7744\fragment-1.1.0\AndroidManifest.xml:20:5-22:41

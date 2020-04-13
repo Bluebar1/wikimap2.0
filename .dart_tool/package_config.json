@@ -104,6 +104,12 @@
       "languageVersion": "2.0"
     },
     {
+      "name": "geocoder",
+      "rootUri": "file:///C:/Users/yupni/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/geocoder-0.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "geolocator",
       "rootUri": "file:///C:/Users/yupni/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/geolocator-5.3.1",
       "packageUri": "lib/",
@@ -314,7 +320,7 @@
       "languageVersion": "2.1"
     }
   ],
-  "generated": "2020-04-13T16:12:18.416706Z",
+  "generated": "2020-04-13T18:36:04.864439Z",
   "generator": "pub",
   "generatorVersion": "2.8.0-dev.20.0.flutter-c9710e5059"
 }
