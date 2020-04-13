@@ -46,16 +46,19 @@ class _SheetState extends State<CustomBottomSheet>
     var geosearchProvider = Provider.of<GeoSearchProvider>(context);
     geosearchProvider.setRubberAnimationController(_animationController);
     return Scaffold(
-      body: RubberBottomSheet(
-        scrollController: _scrollController,
-        lowerLayer: WikiMapView(),
-        upperLayer: Container(
-            decoration: BoxDecoration(color: Colors.transparent),
-            child: MapBottomSheetV3(
-                controller: _scrollController,
-                animationController: _animationController)),
-        animationController: _animationController,
-        headerHeight: 20,
+      body: WillPopScope(
+        onWillPop: () async => Future.value(false),
+        child: RubberBottomSheet(
+          scrollController: _scrollController,
+          lowerLayer: WikiMapView(),
+          upperLayer: Container(
+              decoration: BoxDecoration(color: Colors.transparent),
+              child: MapBottomSheetV3(
+                  controller: _scrollController,
+                  animationController: _animationController)),
+          animationController: _animationController,
+          headerHeight: 20,
+        ),
       ),
     );
   }

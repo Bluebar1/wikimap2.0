@@ -5,9 +5,13 @@ import 'package:wiki_map/providers/map_bottom_sheet_provider.dart';
 import 'package:wiki_map/providers/swiper_index_provider.dart';
 
 class ImageView extends StatelessWidget {
+  final MapBottomSheetProvider mapBottomSheetProvider;
+
+  ImageView(this.mapBottomSheetProvider);
+
   @override
   Widget build(BuildContext context) {
-    var mapBottomSheetProvider = Provider.of<MapBottomSheetProvider>(context);
+    //var mapBottomSheetProvider = Provider.of<MapBottomSheetProvider>(context);
     var swiperIndexProvider = Provider.of<SwiperIndexProvider>(context);
     //var provider = Provider.of<ImageViewProvider>(context);
     return Scaffold(

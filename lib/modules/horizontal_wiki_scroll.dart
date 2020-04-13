@@ -37,7 +37,7 @@ class HorizontalWikiScroll extends StatelessWidget {
     // }
 
     return Stack(
-      overflow: Overflow.visible,
+      //overflow: Overflow.visible,
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
