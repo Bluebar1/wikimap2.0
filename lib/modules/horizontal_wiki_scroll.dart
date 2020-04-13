@@ -36,127 +36,164 @@ class HorizontalWikiScroll extends StatelessWidget {
     //       ));
     // }
 
-    return Container(
-      decoration: BoxDecoration(
-          color: Color.fromRGBO(0, 0, 0, .9),
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20.0), topRight: Radius.circular(20.0))),
-      child: ListView(
-          controller: controller,
-          physics: NeverScrollableScrollPhysics(),
-          children: <Widget>[
-            Container(
-                height: 200,
-                child: (provider.isArticlesDoneLoading == true)
-                    ? Swiper(
-                        index: swiperIndexProvider.currentIndex,
-                        controller: swiperIndexProvider.controller,
-                        onIndexChanged: (value) {
-                          swiperIndexProvider.changeCurrentIndex(value);
-                          provider.getAndSetPagePics();
-                          geosearchProvider.changeCurrentMarker();
-                        },
-                        itemBuilder: (BuildContext context, int index) {
-                          return FutureBuilder(builder: (context, snapshot) {
-                            return GestureDetector(
-                                onTap: () {
-                                  print(
-                                      '${provider.currentArticles[index].title} : ${provider.currentArticles[index].original.source}');
-                                  print(
-                                      '${provider.currentArticles[swiperIndexProvider.currentIndex].title} : ${provider.currentArticles[swiperIndexProvider.currentIndex].original.source}');
+    return Stack(
+      overflow: Overflow.visible,
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+          child: Container(
+            height: 5,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+                color: Color.fromRGBO(100, 100, 100, 1.0),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(40),
+                    topRight: Radius.circular(40))),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top: 5),
+          child: ClipRRect(
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(15), topLeft: Radius.circular(15)),
+            child: Container(
+              decoration: BoxDecoration(color: Color.fromRGBO(0, 0, 0, .9)),
+              child: ListView(
+                  controller: controller,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: <Widget>[
+                    Container(
+                        height: 200,
+                        padding: EdgeInsets.only(top: 30),
+                        child: (provider.isArticlesDoneLoading == true)
+                            ? Swiper(
+                                index: swiperIndexProvider.currentIndex,
+                                controller: swiperIndexProvider.controller,
+                                onIndexChanged: (value) {
+                                  swiperIndexProvider.changeCurrentIndex(value);
+                                  provider.getAndSetPagePics();
+                                  geosearchProvider.changeCurrentMarker();
                                 },
-                                child: (provider
-                                            .currentArticles[index].original !=
-                                        null)
-                                    ? ClipRRect(
-                                        borderRadius: BorderRadius.circular(10),
+                                itemBuilder: (BuildContext context, int index) {
+                                  return FutureBuilder(
+                                      builder: (context, snapshot) {
+                                    return GestureDetector(
+                                        onTap: () {
+                                          print(
+                                              '${provider.currentArticles[index].title} : ${provider.currentArticles[index].original.source}');
+                                          print(
+                                              '${provider.currentArticles[swiperIndexProvider.currentIndex].title} : ${provider.currentArticles[swiperIndexProvider.currentIndex].original.source}');
+                                        },
                                         child: (provider.currentArticles[index]
-                                                .original.source
-                                                .contains('.svg'))
-                                            ? SvgPicture.network(
-                                                provider.currentArticles[index]
-                                                    .original.source,
-                                                fit: BoxFit.cover,
+                                                    .original !=
+                                                null)
+                                            ? ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                child: (provider
+                                                        .currentArticles[index]
+                                                        .original
+                                                        .source
+                                                        .contains('.svg'))
+                                                    ? SvgPicture.network(
+                                                        provider
+                                                            .currentArticles[
+                                                                index]
+                                                            .original
+                                                            .source,
+                                                        fit: BoxFit.cover,
+                                                      )
+                                                    : FadeInImage.memoryNetwork(
+                                                        placeholder:
+                                                            kTransparentImage,
+                                                        image: provider
+                                                            .currentArticles[
+                                                                index]
+                                                            .original
+                                                            .source,
+                                                        fadeInDuration:
+                                                            const Duration(
+                                                                seconds: 1),
+                                                        fit: BoxFit.cover,
+                                                      ),
                                               )
-                                            : FadeInImage.memoryNetwork(
-                                                placeholder: kTransparentImage,
-                                                image: provider
-                                                    .currentArticles[index]
-                                                    .original
-                                                    .source,
-                                                fadeInDuration:
-                                                    const Duration(seconds: 1),
-                                                fit: BoxFit.cover,
-                                              ),
-                                      )
-                                    : NoImageFound(
-                                        index: index,
-                                      ));
-                          });
-                        },
-                        itemCount: provider.currentArticles.length,
-                        viewportFraction: 0.8,
-                        scale: 0.9,
-                      )
-                    : Center(
-                        child: Text('waiting2...'),
-                      )),
-            (provider.isArticlesDoneLoading == true)
-                ? SizedBox(
-                    height: 40,
-                    child: Center(
-                      child: Text(
-                        '${provider.currentArticles[swiperIndexProvider.currentIndex].title}',
-                        style: Theme.of(context).textTheme.bodyText1,
-                      ),
-                    ),
-                  )
-                : Container(),
-            (provider.isArticlesDoneLoading == true)
-                ? WikiActionButtons()
-                : Container(),
-            SizedBox(height: 30),
-            (provider.summaries.length == geosearchProvider.results.length)
-                ? Column(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'Summary:',
-                            style: Theme.of(context).textTheme.bodyText1,
+                                            : NoImageFound(
+                                                index: index,
+                                              ));
+                                  });
+                                },
+                                itemCount: provider.currentArticles.length,
+                                viewportFraction: 0.8,
+                                scale: 0.9,
+                              )
+                            : Center(
+                                child: Text('waiting2...'),
+                              )),
+                    (provider.isArticlesDoneLoading == true)
+                        ? SizedBox(
+                            height: 40,
+                            child: Center(
+                              child: Text(
+                                '${provider.currentArticles[swiperIndexProvider.currentIndex].title}',
+                                style: Theme.of(context).textTheme.bodyText1,
+                              ),
+                            ),
+                          )
+                        : Container(),
+                    (provider.isArticlesDoneLoading == true)
+                        ? WikiActionButtons()
+                        : Container(),
+                    SizedBox(height: 30),
+                    (provider.summaries.length ==
+                            geosearchProvider.results.length)
+                        ? Column(
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Text(
+                                    'Summary:',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Container(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                                  child: Text(
+                                    '${provider.summaries[swiperIndexProvider.currentIndex]}',
+                                    style:
+                                        Theme.of(context).textTheme.bodyText1,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )
+                        : Center(child: Text('waiting')),
+                    SizedBox(height: 40),
+                    (provider.isPagePicsDoneLoading == true)
+                        ? Center(
+                            child: Text(
+                              '${provider.imageUrls.length} Images Found for ${provider.currentArticles[swiperIndexProvider.currentIndex].title}',
+                              style: Theme.of(context).textTheme.bodyText1,
+                            ),
+                          )
+                        : Container(),
+                    (provider.isPagePicsDoneLoading == true)
+                        ? WikiPageInfo(
+                            provider: provider, controller: controller)
+                        : Center(
+                            child: Text('waiting for pics to load'),
                           ),
-                        ),
-                      ),
-                      SizedBox(height: 10),
-                      Container(
-                        child: Padding(
-                          padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                          child: Text(
-                            '${provider.summaries[swiperIndexProvider.currentIndex]}',
-                            style: Theme.of(context).textTheme.bodyText1,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                : Center(child: Text('waiting')),
-            SizedBox(height: 40),
-            (provider.isPagePicsDoneLoading == true)
-                ? Center(
-                    child: Text(
-                      '${provider.imageUrls.length} Images Found for ${provider.currentArticles[swiperIndexProvider.currentIndex].title}',
-                      style: Theme.of(context).textTheme.bodyText1,
-                    ),
-                  )
-                : Container(),
-            (provider.isPagePicsDoneLoading == true)
-                ? WikiPageInfo(provider: provider, controller: controller)
-                : Center(
-                    child: Text('waiting for pics to load'),
-                  ),
-          ]),
+                  ]),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
