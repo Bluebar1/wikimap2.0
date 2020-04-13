@@ -29,7 +29,7 @@ class WikiMapView extends StatelessWidget {
       floatingActionButton: Stack(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.fromLTRB(30, 50, 0, 0),
+            padding: const EdgeInsets.fromLTRB(30, 60, 0, 0),
             child: Align(
                 alignment: Alignment.topLeft,
                 child: Container(
@@ -39,7 +39,7 @@ class WikiMapView extends StatelessWidget {
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(20)),
                   child: FloatingActionButton(
-                    backgroundColor: Colors.grey,
+                    backgroundColor: Color.fromRGBO(207, 207, 207, 1),
                     foregroundColor: Colors.black,
                     heroTag: "backbutton",
                     onPressed: () {
@@ -54,7 +54,7 @@ class WikiMapView extends StatelessWidget {
                 )),
           ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
+            padding: const EdgeInsets.fromLTRB(0, 60, 0, 0),
             child: Align(
                 alignment: Alignment.topRight,
                 child: Container(
@@ -63,18 +63,22 @@ class WikiMapView extends StatelessWidget {
                   decoration: BoxDecoration(
                       color: Colors.black,
                       borderRadius: BorderRadius.circular(20)),
-                  child: FloatingActionButton(
-                    backgroundColor: Colors.grey,
-                    foregroundColor: Colors.black,
-                    heroTag: "helpbutton",
-                    onPressed: () {
-                      showDialog(context: context, builder: (_) => Help());
-                      print('help button pressed');
-                    },
-                    child: Icon(
-                      Icons.help_outline,
-                      size: 40,
-                      color: Colors.black,
+                  child: Center(
+                    child: FloatingActionButton(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Color.fromRGBO(207, 207, 207, 1),
+                      heroTag: "helpbutton",
+                      onPressed: () {
+                        showDialog(context: context, builder: (_) => Help());
+                        print('help button pressed');
+                      },
+                      child: Center(
+                        child: Icon(
+                          Icons.help,
+                          size: 40,
+                          color: Color.fromRGBO(207, 207, 207, 1),
+                        ),
+                      ),
                     ),
                   ),
                 )),

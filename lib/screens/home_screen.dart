@@ -5,12 +5,15 @@ import 'package:wiki_map/providers/geosearch_provider.dart';
 import 'package:wiki_map/providers/permissions_provider.dart';
 import 'package:wiki_map/providers/swiper_index_provider.dart';
 import 'package:wiki_map/screens/bottom_sheet.dart';
+import 'package:wiki_map/screens/saved_pages.dart';
+import 'package:wiki_map/screens/settings.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var permissionsProvider = Provider.of<PermissionsProvider>(context);
     var swiperIndexProvider = Provider.of<SwiperIndexProvider>(context);
+
     _startGeoSearch(Position position) {
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => ChangeNotifierProvider.value(
@@ -25,6 +28,17 @@ class HomeScreen extends StatelessWidget {
                         );
                 },
               ))));
+    }
+
+    void _goToSavedPages() {
+      Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => SavedPages(),
+      ));
+    }
+
+    void _goToSettings() {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) => Settings()));
     }
 
     return (permissionsProvider.geolocationStatus != null)
@@ -49,6 +63,16 @@ class HomeScreen extends StatelessWidget {
                 color: Colors.red,
                 child: Text('Start GeoSearch From Current Location'),
                 onPressed: () => _startGeoSearch(permissionsProvider.position),
+              ),
+              RaisedButton(
+                color: Colors.amberAccent,
+                child: Text('Go to Saved Pages'),
+                onPressed: () => _goToSavedPages(),
+              ),
+              RaisedButton(
+                color: Colors.blue,
+                child: Text('Go to Settings'),
+                onPressed: () => _goToSettings(),
               )
             ],
           )))

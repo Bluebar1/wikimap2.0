@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wiki_map/providers/permissions_provider.dart';
 import 'package:wiki_map/providers/saved_pages_provider.dart';
+import 'package:wiki_map/providers/settings_provider.dart';
 import 'package:wiki_map/providers/swiper_index_provider.dart';
 import 'package:wiki_map/providers/theme_provider.dart';
 import 'package:wiki_map/screens/home_screen.dart';
@@ -19,9 +20,13 @@ class WikiMap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var themeProvider = Provider.of<ThemeProvider>(context);
+
     //var themeProvider = Provider.of<ThemeProvider>(context);
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider<SettingsProvider>(
+            create: (_) => SettingsProvider(themeProvider)),
         ChangeNotifierProvider<PermissionsProvider>(
             create: (_) => PermissionsProvider()),
         ChangeNotifierProvider<SwiperIndexProvider>(

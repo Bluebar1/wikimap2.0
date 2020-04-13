@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+/*
+Created NB 4/13/2020
+
+Stateful widget with animation, is triggered when the help (?) button 
+is pressed on the map view
+*/
+
 class Help extends StatefulWidget {
   _Help createState() => _Help();
 }
