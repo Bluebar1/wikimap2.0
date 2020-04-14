@@ -140,6 +140,12 @@
       "languageVersion": "2.3"
     },
     {
+      "name": "image_picker",
+      "rootUri": "file:///C:/Users/yupni/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/image_picker-0.6.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.0"
+    },
+    {
       "name": "location_permissions",
       "rootUri": "file:///C:/Users/yupni/AppData/Roaming/Pub/Cache/hosted/pub.dartlang.org/location_permissions-2.0.5",
       "packageUri": "lib/",
@@ -320,7 +326,7 @@
       "languageVersion": "2.1"
     }
   ],
-  "generated": "2020-04-13T19:56:26.203477Z",
+  "generated": "2020-04-14T12:50:23.645090Z",
   "generator": "pub",
   "generatorVersion": "2.8.0-dev.20.0.flutter-c9710e5059"
 }

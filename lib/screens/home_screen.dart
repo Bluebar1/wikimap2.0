@@ -7,6 +7,7 @@ import 'package:wiki_map/providers/permissions_provider.dart';
 import 'package:wiki_map/providers/swiper_index_provider.dart';
 import 'package:wiki_map/providers/user_input_provider.dart';
 import 'package:wiki_map/screens/bottom_sheet.dart';
+import 'package:wiki_map/screens/image_selection.dart';
 import 'package:wiki_map/screens/saved_pages.dart';
 import 'package:wiki_map/screens/settings.dart';
 
@@ -66,6 +67,11 @@ class HomeScreen extends StatelessWidget {
           .push(MaterialPageRoute(builder: (context) => Settings()));
     }
 
+    void _goToImageSelection() {
+      Navigator.of(context)
+          .push(MaterialPageRoute(builder: (_) => ImageSelection()));
+    }
+
     return (permissionsProvider.geolocationStatus != null)
         ? Scaffold(
             body: Center(
@@ -123,6 +129,13 @@ class HomeScreen extends StatelessWidget {
                   (userInputProvider.inputAddress != null)
                       ? _checkIfAddressValid()
                       : _showAddressErrorFlushBar();
+                },
+              ),
+              RaisedButton(
+                color: Colors.purpleAccent,
+                child: Text('Photo Library'),
+                onPressed: () {
+                  _goToImageSelection();
                 },
               ),
             ],
