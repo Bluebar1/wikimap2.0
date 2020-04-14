@@ -10,7 +10,7 @@ class ImageSelection extends StatefulWidget {
 class _ImageSelection extends State<ImageSelection> {
   String _path;
   bool isVideo = false;
-  String _retrieveDataError;
+  //String _retrieveDataError;
 
   void _showPhotoLibrary(BuildContext context) async {
     //Navigator.pop(context);
@@ -45,19 +45,32 @@ class _ImageSelection extends State<ImageSelection> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          children: [
-            (_path != null) ? Image.file(File(_path)) : Text('ERROR'),
-            FlatButton(
-              child: Text("View Photo Library",
-                  style: TextStyle(color: Colors.white)),
-              color: Colors.green,
-              onPressed: () {
-                isVideo = false;
-                _showPhotoLibrary(context);
-              },
-            )
-          ],
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              (_path != null)
+                  ? Image.file(File(_path))
+                  : SizedBox(height: 300, child: Text('No Photo Selected Yet')),
+              FlatButton(
+                child: Text('View Photo Library',
+                    style: TextStyle(color: Colors.white)),
+                color: Colors.green,
+                onPressed: () {
+                  isVideo = false;
+                  _showPhotoLibrary(context);
+                },
+              ),
+              FlatButton(
+                child: Text('Print Image Specs',
+                    style: TextStyle(color: Colors.white)),
+                color: Colors.green,
+                onPressed: () {
+                  print(File(_path).toString());
+                },
+              )
+            ],
+          ),
         ),
       ),
     );
