@@ -1,7 +1,10 @@
 import 'dart:io';
-
+import 'package:exif/exif.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:wiki_map/models/exif_model.dart';
+import 'dart:convert' as convert;
+
 
 class ImageSelection extends StatefulWidget {
   _ImageSelection createState() => _ImageSelection();
@@ -10,6 +13,7 @@ class ImageSelection extends StatefulWidget {
 class _ImageSelection extends State<ImageSelection> {
   String _path;
   bool isVideo = false;
+  Exif exif;
   //String _retrieveDataError;
 
   void _showPhotoLibrary(BuildContext context) async {
@@ -18,60 +22,75 @@ class _ImageSelection extends State<ImageSelection> {
 
     setState(() {
       _path = file.path;
+      _printExif();
     });
   }
 
-  // Future<void> retrieveLostData() async {
-  //   final LostDataResponse response = await ImagePicker.retrieveLostData();
-  //   if (response.isEmpty) {
-  //     return;
-  //   }
-  //   if (response.file != null) {
-  //     if (response.type == RetrieveType.video) {
-  //       isVideo = true;
-  //       await _playVideo(response.file);
-  //     } else {
-  //       isVideo = false;
-  //       setState(() {
-  //         _imageFile = response.file;
-  //       });
-  //     }
-  //   } else {
-  //     _retrieveDataError = response.exception.code;
-  //   }
-  // }
+  
+
+  _printExif() async {
+    print('print exif called');
+    try {
+      Map<String, IfdTag> data = await readExifFromFile(File(_path));
+      setState(() {
+        exif = Exif.fromJson(data);
+      });
+    } catch (err) {
+      setState(() {
+        exif = null;
+      });
+    }
+    // Map<String, IfdTag> data = await readExifFromFile(File(_path));
+    // print(data['GPS GPSLatitude'].values);
+    // print(data['GPS GPSLatitude'].values.runtimeType);
+    // //exif = Exif.fromJson(data);
+    
+    // setState(() {
+    //     exif = Exif.fromJson(data);
+    //   });
+    
+    print('EXIF PRINT OUT: $exif');
+    
+
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              (_path != null)
-                  ? Image.file(File(_path))
-                  : SizedBox(height: 300, child: Text('No Photo Selected Yet')),
-              FlatButton(
-                child: Text('View Photo Library',
-                    style: TextStyle(color: Colors.white)),
-                color: Colors.green,
-                onPressed: () {
-                  isVideo = false;
-                  _showPhotoLibrary(context);
-                },
-              ),
-              FlatButton(
-                child: Text('Print Image Specs',
-                    style: TextStyle(color: Colors.white)),
-                color: Colors.green,
-                onPressed: () {
-                  print(File(_path).toString());
-                },
-              )
-            ],
+      body: ListView(
+        children: <Widget>[
+          SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                (_path != null)
+                    ? Image.file(File(_path))
+                    : SizedBox(height: 300, child: Text('No Photo Selected Yet')),
+                (exif != null)
+                    ? Center(child: Text('${exif.gpsLatitude} | ${exif.gpsLongitude}'))
+                    : Center(child: Text('No Exif Found'),),
+                FlatButton(
+                  child: Text('View Photo Library',
+                      style: TextStyle(color: Colors.white)),
+                  color: Colors.green,
+                  onPressed: () {
+                    isVideo = false;
+                    _showPhotoLibrary(context);
+                  },
+                ),
+                FlatButton(
+                  child: Text('Print Image Specs',
+                      style: TextStyle(color: Colors.white)),
+                  color: Colors.green,
+                  onPressed: () {
+                    print(File(_path).toString());
+                    _printExif();
+                  },
+                )
+              ],
+            ),
           ),
-        ),
+        ],
       ),
     );
   }

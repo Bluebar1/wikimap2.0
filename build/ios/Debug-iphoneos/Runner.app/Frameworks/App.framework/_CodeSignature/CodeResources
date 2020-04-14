@@ -10,7 +10,7 @@
 		</data>
 		<key>flutter_assets/AssetManifest.json</key>
 		<data>
-		HKBkNeVem+wnyVQ5Xv6OhRoxO/Y=
+		gxJuw7OpU6wPqwhHAIpid2glbT0=
 		</data>
 		<key>flutter_assets/FontManifest.json</key>
 		<data>
@@ -18,7 +18,7 @@
 		</data>
 		<key>flutter_assets/LICENSE</key>
 		<data>
-		z8fGTfqrOhgO8XHskP5Mi7YCuYg=
+		cmtRqFD/CiZEyPX9vJo7HaEki7Q=
 		</data>
 		<key>flutter_assets/assets/fonts/Montserrat-Bold.ttf</key>
 		<data>
@@ -27,6 +27,10 @@
 		<key>flutter_assets/assets/fonts/Montserrat-Regular.ttf</key>
 		<data>
 		0ls1JC3rHG/4iLgWLKKqzDVtOJk=
+		</data>
+		<key>flutter_assets/assets/map_style/map_style.text</key>
+		<data>
+		L3PId+XnQTpAq/NsZSFvP11aKus=
 		</data>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.ttf</key>
 		<data>
@@ -38,7 +42,7 @@
 		</data>
 		<key>flutter_assets/kernel_blob.bin</key>
 		<data>
-		rYL2tXST9zQao2w5JfLDAUjToYM=
+		ExE8mgcUu+TJGkoz13jlz2NDzlw=
 		</data>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -55,11 +59,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			HKBkNeVem+wnyVQ5Xv6OhRoxO/Y=
+			gxJuw7OpU6wPqwhHAIpid2glbT0=
 			</data>
 			<key>hash2</key>
 			<data>
-			aiiX/L2ro5Ulfri2ESglROBMXmYe9LeyBuNrmKJfVgw=
+			6KJmyStAvx/Tgv4Q0eIFZhbBjefPEa2UgQDvKbNESE8=
 			</data>
 		</dict>
 		<key>flutter_assets/FontManifest.json</key>
@@ -77,11 +81,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			z8fGTfqrOhgO8XHskP5Mi7YCuYg=
+			cmtRqFD/CiZEyPX9vJo7HaEki7Q=
 			</data>
 			<key>hash2</key>
 			<data>
-			fyTbNXhPRzbOBo8EYE1qXYHsOqw+lDYxOI9mZ/1tw10=
+			SrglYHMFd45TKa5DbzdWhUrJwzPl+gLfhL6oTNpfQjU=
 			</data>
 		</dict>
 		<key>flutter_assets/assets/fonts/Montserrat-Bold.ttf</key>
@@ -104,6 +108,17 @@
 			<key>hash2</key>
 			<data>
 			B3zasVFhIyqbpxJNLd16lCUUV1B4jpqWbBVsxmJ09SU=
+			</data>
+		</dict>
+		<key>flutter_assets/assets/map_style/map_style.text</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			L3PId+XnQTpAq/NsZSFvP11aKus=
+			</data>
+			<key>hash2</key>
+			<data>
+			lhkZ1NAZONGK9FEeGPvC85QE3nlR7GtqrCRtPyGsOsk=
 			</data>
 		</dict>
 		<key>flutter_assets/fonts/MaterialIcons-Regular.ttf</key>
@@ -132,11 +147,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			rYL2tXST9zQao2w5JfLDAUjToYM=
+			ExE8mgcUu+TJGkoz13jlz2NDzlw=
 			</data>
 			<key>hash2</key>
 			<data>
-			p+rd5Ph9chKonu99KOjFe/uADHo71dj2WGoQI+6qeBk=
+			AQ49uhc7FbhIGruRWlMj1eebLmfOnSH9Z9iX/E0i/dk=
 			</data>
 		</dict>
 		<key>flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
