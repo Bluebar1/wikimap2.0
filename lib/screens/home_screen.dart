@@ -1,9 +1,11 @@
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 import 'package:wiki_map/providers/geosearch_provider.dart';
 import 'package:wiki_map/providers/permissions_provider.dart';
 import 'package:wiki_map/providers/swiper_index_provider.dart';
+import 'package:wiki_map/providers/user_input_provider.dart';
 import 'package:wiki_map/screens/bottom_sheet.dart';
 import 'package:wiki_map/screens/saved_pages.dart';
 import 'package:wiki_map/screens/settings.dart';
@@ -13,6 +15,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var permissionsProvider = Provider.of<PermissionsProvider>(context);
     var swiperIndexProvider = Provider.of<SwiperIndexProvider>(context);
+    var userInputProvider = Provider.of<UserInputProvider>(context);
 
     _startGeoSearch(Position position) {
       Navigator.of(context).push(MaterialPageRoute(
@@ -28,6 +31,28 @@ class HomeScreen extends StatelessWidget {
                         );
                 },
               ))));
+    }
+
+    _showAddressErrorFlushBar() {
+      return Flushbar(
+        message: 'That address could not be found',
+        duration: Duration(seconds: 2),
+        isDismissible: true,
+        flushbarPosition: FlushbarPosition.BOTTOM,
+        backgroundColor: Colors.black,
+        borderRadius: 8,
+        margin: EdgeInsets.all(5),
+        borderColor: Colors.white,
+        dismissDirection: FlushbarDismissDirection.HORIZONTAL,
+        icon: Icon(Icons.error, color: Colors.amber),
+      ).show(context);
+    }
+
+    _checkIfAddressValid() async {
+      var position = await userInputProvider.convertToLocation();
+      (position != null)
+          ? _startGeoSearch(position)
+          : _showAddressErrorFlushBar();
     }
 
     void _goToSavedPages() {
@@ -73,7 +98,33 @@ class HomeScreen extends StatelessWidget {
                 color: Colors.blue,
                 child: Text('Go to Settings'),
                 onPressed: () => _goToSettings(),
-              )
+              ),
+              SizedBox(height: 30),
+              SizedBox(
+                height: 20,
+                width: 200,
+                child: TextField(
+                  controller: userInputProvider.addressController,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: 'Enter Address',
+                    fillColor: Colors.black,
+                  ),
+                  textAlign: TextAlign.center,
+                  onChanged: (String value) {
+                    userInputProvider.changeAddress(value);
+                  },
+                ),
+              ),
+              RaisedButton(
+                color: Colors.green,
+                child: Text('Search Address'),
+                onPressed: () {
+                  (userInputProvider.inputAddress != null)
+                      ? _checkIfAddressValid()
+                      : _showAddressErrorFlushBar();
+                },
+              ),
             ],
           )))
         : Center(

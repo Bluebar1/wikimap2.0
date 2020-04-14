@@ -5,6 +5,7 @@ import 'package:wiki_map/providers/saved_pages_provider.dart';
 import 'package:wiki_map/providers/settings_provider.dart';
 import 'package:wiki_map/providers/swiper_index_provider.dart';
 import 'package:wiki_map/providers/theme_provider.dart';
+import 'package:wiki_map/providers/user_input_provider.dart';
 import 'package:wiki_map/screens/home_screen.dart';
 import 'package:wiki_map/services/geosearch_service.dart';
 import 'package:wiki_map/style.dart';
@@ -32,7 +33,9 @@ class WikiMap extends StatelessWidget {
         ChangeNotifierProvider<SwiperIndexProvider>(
             create: (_) => SwiperIndexProvider()),
         ChangeNotifierProvider<SavedPagesProvider>(
-            create: (_) => SavedPagesProvider())
+            create: (_) => SavedPagesProvider()),
+        ChangeNotifierProvider<UserInputProvider>(
+            create: (_) => UserInputProvider()),
       ],
       child: MaterialApp(
           theme: ThemeData(textTheme: TextTheme(bodyText1: ModuleTextStyle)),
