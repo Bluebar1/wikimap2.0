@@ -29,6 +29,7 @@ and that list is tranformed to a Set<Marker>.of<GeoSearchProvider.currentMarkers
 class GeoSearchProvider with ChangeNotifier {
   final Position startingPosition;
   final SwiperIndexProvider swiperIndexProvider;
+  final BuildContext buildContext;
   final markerService = MarkerService();
   //
   List<GeoSearch> _results;
@@ -47,8 +48,13 @@ class GeoSearchProvider with ChangeNotifier {
   RubberAnimationController get rubberAnimationController =>
       _rubberAnimationController;
   //
-  GeoSearchProvider(this.startingPosition, this.swiperIndexProvider) {
+  double _deviceHeight;
+  GeoSearchProvider(
+      this.startingPosition, this.swiperIndexProvider, this.buildContext) {
     //_controller = Completer();
+    _deviceHeight = MediaQuery.of(buildContext).size.height;
+    print('DEVICE HEIGHT:::::::::::::::');
+    print(_deviceHeight);
     _results = null;
     _currentMarkers = null;
     _position = CameraPosition(

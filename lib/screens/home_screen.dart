@@ -21,7 +21,7 @@ class HomeScreen extends StatelessWidget {
     _startGeoSearch(Position position) {
       Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => ChangeNotifierProvider.value(
-              value: GeoSearchProvider(position, swiperIndexProvider),
+              value: GeoSearchProvider(position, swiperIndexProvider, context),
               child: Consumer<GeoSearchProvider>(
                 builder: (context, provider, child) {
                   return (provider.currentMarkers != null &&
