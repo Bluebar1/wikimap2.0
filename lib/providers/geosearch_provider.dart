@@ -156,13 +156,17 @@ class GeoSearchProvider with ChangeNotifier {
           switch (getLevel()) {
             case 1:
               {
-                return latitude - 0.0062;
+                return (_deviceHeight < 850)
+                    ? latitude - 0.0062
+                    : latitude - 0.0063;
               }
               break;
 
             case 2: //10-20
               {
-                return latitude - 0.0058;
+                return (_deviceHeight < 850)
+                    ? latitude - 0.0058
+                    : latitude - 0.006;
               }
               break;
             case 3:
@@ -172,27 +176,42 @@ class GeoSearchProvider with ChangeNotifier {
               break;
             case 4: //30-40
               {
-                return latitude - 0.005;
+                //return latitude - 0.005;
+                return (_deviceHeight < 850)
+                    ? latitude - 0.005
+                    : latitude - 0.006;
               }
               break;
             case 5: //40-50
               {
-                return latitude - 0.0044;
+                //return latitude - 0.0044;
+                return (_deviceHeight < 850)
+                    ? latitude - 0.0044
+                    : latitude - 0.0046;
               }
               break;
             case 6:
               {
-                return latitude - 0.0032;
+                // return latitude - 0.0032;
+                return (_deviceHeight < 850)
+                    ? latitude - 0.0032
+                    : latitude - 0.0034;
               }
               break;
             case 7:
               {
-                return latitude - 0.0023;
+                // return latitude - 0.0023;
+                return (_deviceHeight < 850)
+                    ? latitude - 0.0023
+                    : latitude - 0.0025;
               }
               break;
             case 8:
               {
-                return latitude - 0.0018;
+                // return latitude - 0.0018;
+                return (_deviceHeight < 850)
+                    ? latitude - 0.0018
+                    : latitude - 0.002;
               }
               break;
             case 9:
