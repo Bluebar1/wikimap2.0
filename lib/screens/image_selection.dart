@@ -5,7 +5,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:wiki_map/models/exif_model.dart';
 import 'dart:convert' as convert;
 
-
 class ImageSelection extends StatefulWidget {
   _ImageSelection createState() => _ImageSelection();
 }
@@ -26,8 +25,6 @@ class _ImageSelection extends State<ImageSelection> {
     });
   }
 
-  
-
   _printExif() async {
     print('print exif called');
     try {
@@ -40,18 +37,8 @@ class _ImageSelection extends State<ImageSelection> {
         exif = null;
       });
     }
-    // Map<String, IfdTag> data = await readExifFromFile(File(_path));
-    // print(data['GPS GPSLatitude'].values);
-    // print(data['GPS GPSLatitude'].values.runtimeType);
-    // //exif = Exif.fromJson(data);
-    
-    // setState(() {
-    //     exif = Exif.fromJson(data);
-    //   });
-    
-    print('EXIF PRINT OUT: $exif');
-    
 
+    print('EXIF PRINT OUT: $exif');
   }
 
   @override
@@ -65,10 +52,15 @@ class _ImageSelection extends State<ImageSelection> {
               children: [
                 (_path != null)
                     ? Image.file(File(_path))
-                    : SizedBox(height: 300, child: Text('No Photo Selected Yet')),
+                    : SizedBox(
+                        height: 300, child: Text('No Photo Selected Yet')),
                 (exif != null)
-                    ? Center(child: Text('${exif.gpsLatitude} | ${exif.gpsLongitude}'))
-                    : Center(child: Text('No Exif Found'),),
+                    ? Center(
+                        child:
+                            Text('${exif.gpsLatitude} | ${exif.gpsLongitude}'))
+                    : Center(
+                        child: Text('No Exif Found'),
+                      ),
                 FlatButton(
                   child: Text('View Photo Library',
                       style: TextStyle(color: Colors.white)),

@@ -8,6 +8,7 @@ import 'package:wiki_map/models/geosearch_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:wiki_map/providers/swiper_index_provider.dart';
 import 'dart:convert' as convert;
+import 'dart:math';
 
 import 'package:wiki_map/services/marker_service.dart';
 /*
@@ -59,8 +60,8 @@ class GeoSearchProvider with ChangeNotifier {
   }
 
   void setRubberAnimationController(RubberAnimationController controller) {
-    print('SET RUBBER ANIMATION CONTROLLER HAS BEEN CALLED');
-    print('${controller.animationState.value}');
+    //print('SET RUBBER ANIMATION CONTROLLER HAS BEEN CALLED');
+    //print('${controller.animationState.value}');
     _rubberAnimationController = controller;
   }
 
@@ -71,7 +72,8 @@ class GeoSearchProvider with ChangeNotifier {
   }
 
   void changeCurrentMarker() async {
-    print('CHANGE CURRENT MARKER CALLED');
+    //print('CHANGE CURRENT MARKER CALLED');
+    printGeodetic();
     final GoogleMapController cont = await _controller.future;
     print('CONT ------------ ${cont.toString()}');
     LatLng latLng = LatLng(
@@ -82,38 +84,130 @@ class GeoSearchProvider with ChangeNotifier {
         CameraPosition(target: latLng, zoom: 16 //_position.zoom,
             );
     cont.showMarkerInfoWindow(MarkerId('${swiperIndexProvider.currentIndex}'));
+    //cont.animateCamera(CameraUpdate.newLatLng(latLng))
     cont.animateCamera(CameraUpdate.newCameraPosition(newtPosition));
   }
 
+  void printGeodetic() async {
+    print(
+        'CURRENT LATITUTE:::: ${_results[swiperIndexProvider.currentIndex].lat}');
+    double geocentricLatitude = _results[swiperIndexProvider.currentIndex].lat;
+    double geocentricLongitude = _results[swiperIndexProvider.currentIndex].lon;
+    double geocentricLatitudeP =
+        _results[swiperIndexProvider.currentIndex].lat - 0.0033;
+    double geocentricLongitudeP =
+        _results[swiperIndexProvider.currentIndex].lon;
+
+    var dist = await Geolocator().distanceBetween(geocentricLatitude,
+        geocentricLongitude, getDynamicLatitude(), geocentricLongitudeP);
+    print('DIST::: $dist');
+
+    if (geocentricLatitude >= 0) {
+    } else {}
+  }
+
+  int getLevel() {
+    print('GET LEVEL CALLED');
+    double tempAbsVal = (_results[swiperIndexProvider.currentIndex].lat).abs();
+    if (tempAbsVal <= 10) {
+      return 1;
+    } else if (tempAbsVal <= 20) {
+      return 2;
+    } else if (tempAbsVal <= 30) {
+      return 3;
+    } else if (tempAbsVal <= 40) {
+      return 4;
+    } else if (tempAbsVal <= 50) {
+      return 5;
+    } else if (tempAbsVal <= 60) {
+      return 6;
+    } else if (tempAbsVal <= 70) {
+      return 7;
+    } else if (tempAbsVal <= 80) {
+      return 8;
+    } else {
+      return 9;
+    }
+  }
+
   double getDynamicLatitude() {
+    double latitude = _results[swiperIndexProvider.currentIndex].lat;
     switch (_rubberAnimationController.animationState.value) {
       case AnimationState.collapsed:
         {
-          return _results[swiperIndexProvider.currentIndex].lat - 0.0015;
+          return latitude - 0.0015;
         }
         break;
 
       case AnimationState.half_expanded:
         {
-          return _results[swiperIndexProvider.currentIndex].lat - 0.0033;
+          return latitude - 0.0033;
         }
         break;
 
       case AnimationState.expanded:
         {
-          return _results[swiperIndexProvider.currentIndex].lat - 0.005;
+          switch (getLevel()) {
+            case 1:
+              {
+                return latitude - 0.0062;
+              }
+              break;
+
+            case 2: //10-20
+              {
+                return latitude - 0.0058;
+              }
+              break;
+            case 3:
+              {
+                return latitude - 0.0056;
+              }
+              break;
+            case 4: //30-40
+              {
+                return latitude - 0.005;
+              }
+              break;
+            case 5: //40-50
+              {
+                return latitude - 0.0044;
+              }
+              break;
+            case 6:
+              {
+                return latitude - 0.0032;
+              }
+              break;
+            case 7:
+              {
+                return latitude - 0.0023;
+              }
+              break;
+            case 8:
+              {
+                return latitude - 0.0018;
+              }
+              break;
+            case 9:
+              {
+                print('how was this called');
+              }
+              break;
+          }
+          //return _results[swiperIndexProvider.currentIndex].lat - 0.005;
         }
         break;
 
       case AnimationState.animating:
         {
-          return _results[swiperIndexProvider.currentIndex].lat;
+          return latitude;
         }
         break;
 
       default:
         {
-          return _results[swiperIndexProvider.currentIndex].lat;
+          return latitude;
         }
     }
   }
@@ -154,7 +248,7 @@ class GeoSearchProvider with ChangeNotifier {
   TODO: (nb) check if notifyListeners() is needed 
   */
   void setResults(List<dynamic> jsonResults) {
-    print(jsonResults.runtimeType);
+    //print(jsonResults.runtimeType);
 
     _results =
         jsonResults.map((geosearch) => GeoSearch.fromJson(geosearch)).toList();
