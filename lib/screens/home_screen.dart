@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:provider/provider.dart';
 import 'package:wiki_map/providers/geosearch_provider.dart';
+import 'package:wiki_map/providers/image_testing_provider.dart';
 import 'package:wiki_map/providers/permissions_provider.dart';
 import 'package:wiki_map/providers/swiper_index_provider.dart';
 import 'package:wiki_map/providers/user_input_provider.dart';
 import 'package:wiki_map/screens/bottom_sheet.dart';
 import 'package:wiki_map/screens/image_selection.dart';
+import 'package:wiki_map/screens/image_testing.dart';
 import 'package:wiki_map/screens/saved_pages.dart';
 import 'package:wiki_map/screens/settings.dart';
 
@@ -32,6 +34,14 @@ class HomeScreen extends StatelessWidget {
                         );
                 },
               ))));
+    }
+
+    void _goToImageTesting() {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => ChangeNotifierProvider<ImageTestingProvider>(
+                create: (context) => ImageTestingProvider(),
+                child: ImageTesting(),
+              )));
     }
 
     _showAddressErrorFlushBar() {
@@ -136,6 +146,13 @@ class HomeScreen extends StatelessWidget {
                 child: Text('Photo Library'),
                 onPressed: () {
                   _goToImageSelection();
+                },
+              ),
+              RaisedButton(
+                color: Colors.purpleAccent,
+                child: Text('Image Testing'),
+                onPressed: () {
+                  _goToImageTesting();
                 },
               ),
             ],

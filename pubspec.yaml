@@ -39,6 +39,7 @@ dependencies:
   flutter_svg: ^0.17.3+1
   image_picker: ^0.6.5
   exif: ^1.0.2
+  photo_manager: ^0.5.0
 
 dev_dependencies:
   flutter_test:
