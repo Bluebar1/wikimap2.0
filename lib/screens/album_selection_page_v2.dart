@@ -16,8 +16,12 @@ class _AspState extends State<AlbumSelectionPageV2> {
   Widget build(BuildContext context) {
     void _goToImageTesting(int index) {
       provider.runPathsNew(index);
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => ImageTestingV2()));
+      Navigator.push(context,
+          MaterialPageRoute(builder: (BuildContext context) {
+        return ImageTestingV2();
+      }));
+      // Navigator.of(context)
+      //     .push(MaterialPageRoute(builder: (_) => ImageTestingV2()));
     }
 
     return Scaffold(

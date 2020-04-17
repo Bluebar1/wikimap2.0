@@ -8,6 +8,7 @@ import 'package:wiki_map/providers/permissions_provider.dart';
 import 'package:wiki_map/providers/swiper_index_provider.dart';
 import 'package:wiki_map/providers/user_input_provider.dart';
 import 'package:wiki_map/screens/album_selection_page.dart';
+import 'package:wiki_map/screens/album_selection_page_v2.dart';
 import 'package:wiki_map/screens/bottom_sheet.dart';
 import 'package:wiki_map/screens/image_selection.dart';
 import 'package:wiki_map/screens/image_testing.dart';
@@ -16,6 +17,7 @@ import 'package:wiki_map/screens/saved_pages.dart';
 import 'package:wiki_map/screens/settings.dart';
 
 class HomeScreen extends StatelessWidget {
+  final provider = ImageTestingProvider();
   @override
   Widget build(BuildContext context) {
     var permissionsProvider = Provider.of<PermissionsProvider>(context);
@@ -65,9 +67,10 @@ class HomeScreen extends StatelessWidget {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (_) => ChangeNotifierProvider<ImageTestingProvider>(
-                    create: (context) => ImageTestingProvider(),
-                    child: AlbumSelectionPage(),
+              builder: (_) =>
+                  ChangeNotifierProvider<ImageTestingProvider>.value(
+                    value: provider, //(context) => ImageTestingProvider(),
+                    child: AlbumSelectionPageV2(),
                   )));
     }
 
