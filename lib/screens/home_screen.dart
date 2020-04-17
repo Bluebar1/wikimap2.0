@@ -7,6 +7,7 @@ import 'package:wiki_map/providers/image_testing_provider.dart';
 import 'package:wiki_map/providers/permissions_provider.dart';
 import 'package:wiki_map/providers/swiper_index_provider.dart';
 import 'package:wiki_map/providers/user_input_provider.dart';
+import 'package:wiki_map/screens/album_selection_page.dart';
 import 'package:wiki_map/screens/bottom_sheet.dart';
 import 'package:wiki_map/screens/image_selection.dart';
 import 'package:wiki_map/screens/image_testing.dart';
@@ -36,11 +37,19 @@ class HomeScreen extends StatelessWidget {
               ))));
     }
 
-    void _goToImageTesting() {
+    // void _goToImageTesting() {
+    //   Navigator.of(context).push(MaterialPageRoute(
+    //       builder: (_) => ChangeNotifierProvider<ImageTestingProvider>(
+    //             create: (context) => ImageTestingProvider(),
+    //             child: ImageTesting(),
+    //           )));
+    // }
+
+    void _goToAlbumSelection() {
       Navigator.of(context).push(MaterialPageRoute(
           builder: (_) => ChangeNotifierProvider<ImageTestingProvider>(
                 create: (context) => ImageTestingProvider(),
-                child: ImageTesting(),
+                child: AlbumSelectionPage(),
               )));
     }
 
@@ -152,7 +161,7 @@ class HomeScreen extends StatelessWidget {
                 color: Colors.purpleAccent,
                 child: Text('Image Testing'),
                 onPressed: () {
-                  _goToImageTesting();
+                  _goToAlbumSelection();
                 },
               ),
             ],
