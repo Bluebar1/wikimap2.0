@@ -27,15 +27,32 @@ class _AspState extends State<AlbumSelectionPageV2> {
 
     return Scaffold(
       appBar: AppBar(title: Text('Test')),
-      body: (provider.list.isNotEmpty)
+      body: (provider.albumThumbViewList.isNotEmpty)
           ? ListView.builder(
               itemCount: provider.list.length,
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () => _goToImageTesting(index),
                   child: SizedBox(
-                    height: 40,
-                    child: Text('${provider.list[index].name}'),
+                    height: 100,
+                    child: Column(
+                      children: <Widget>[
+                        Text('${provider.list[index].name}'),
+                        ListView.builder(
+                            itemCount:
+                                provider.albumThumbViewList[index].length,
+                            itemBuilder: (_content, _index) {
+                              return SizedBox(
+                                height: 100,
+                                width: 100,
+                                child: Image.memory(
+                                  provider.albumThumbViewList[index][_index],
+                                  fit: BoxFit.cover,
+                                ),
+                              );
+                            })
+                      ],
+                    ),
                   ),
                 );
               })

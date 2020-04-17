@@ -23,6 +23,9 @@ class ImageTestingProvider with ChangeNotifier {
   List<Uint8List> _thumbDataList;
   List<Uint8List> get thumbDataList => _thumbDataList;
 
+  List<List<Uint8List>> _albumThumbViewList;
+  List<List<Uint8List>> get albumThumbViewList => _albumThumbViewList;
+
   List<File> _imgFile;
   List<File> get imgFile => _imgFile;
 
@@ -50,6 +53,7 @@ class ImageTestingProvider with ChangeNotifier {
     _latlngList = [];
     _thumbDataList = [];
     _albumGpsCounter = [];
+    _albumThumbViewList = [[]];
     _imgFile = null;
     _exif = null;
     _isDoneLoading = false;
@@ -61,22 +65,52 @@ class ImageTestingProvider with ChangeNotifier {
     notifyListeners();
     _getAlbumGpsCountList().then((value) {
       _albumGpsCounter = value;
-      notifyListeners();
+      _getAlbumThumbnails().then((value) {
+        _albumThumbViewList = value;
+        notifyListeners();
+      });
+      //notifyListeners();
     });
-    //_albumGpsCounter = await Future.wait(_getAlbumGpsCountList());
-    // int _albumIndex = 0;
-    // //Future.wait(futures)
-    // for (AssetPathEntity album in _list) {
-    //   var temp = await album.assetList;
-    //   for (AssetEntity ent in temp) {
-    //     if (ent.latitude != 0.0) {
-    //       _addOneToIndex(_albumIndex);
-    //     }
-    //   }
-    //   _albumIndex++;
-    //   //runAlbumGpsCount()
-    // }
   }
+
+  Future<List<List<Uint8List>>> _getAlbumThumbnails() async {
+    List<List<Uint8List>> x = List.generate(_list.length, (index) => List(5));
+    int _thumbIndex = 0;
+    for (AssetPathEntity thumbAlbum in _list) {
+      var thumbAssetList = await thumbAlbum.getAssetListPaged(_thumbIndex, 5);
+      int _picIndex = 0;
+      for (AssetEntity thumbEnt in thumbAssetList) {
+        x[_thumbIndex][_picIndex] = await thumbEnt.thumbDataWithSize(100, 100);
+      }
+    }
+    return x;
+  }
+  //   for (AssetPathEntity album in _list) {
+  //     List<AssetEntity> temp= await album.getAssetListPaged(_albumIndex, 5);
+  //     //int _picIndex = 0;
+  //     for (AssetEntity ent in temp) {
+  //       tempList[_albumIndex].add(await ent.thumbDataWithSize(100, 100));
+  //       }
+  //     }
+  //     _albumIndex++;
+  //     //runAlbumGpsCount()
+  //   }
+
+  //return x;
+  //   List<List<Uint8List>> tempList = List.generate(_list.length, (index) => List(_albumGpsCounter[index]));
+  //   int _albumIndex = 0;
+  //  //List<int> tempInt = List.filled(_list.length, 0);
+  //   for (AssetPathEntity album in _list) {
+  //     List<AssetEntity> temp= await album.getAssetListPaged(_albumIndex, 5);
+  //     //int _picIndex = 0;
+  //     for (AssetEntity ent in temp) {
+  //       tempList[_albumIndex].add(await ent.thumbDataWithSize(100, 100));
+  //       }
+  //     }
+  //     _albumIndex++;
+  //     //runAlbumGpsCount()
+  //   }
+  //   return tempList;
 
   Future<List<int>> _getAlbumGpsCountList() async {
     int _albumIndex = 0;
