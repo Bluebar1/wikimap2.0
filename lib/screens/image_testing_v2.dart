@@ -17,42 +17,33 @@ class _ImageTestingState extends State<ImageTestingV2> {
         appBar: AppBar(
           title: Text('Image Testing'),
         ),
-        body: Column(
-          children: <Widget>[
-            SizedBox(
-              child: Center(
-                child: Text('List Length: ${provider.gpsEnts.length}'),
-              ),
-            ),
-            Center(
-                child: (provider.latlngList.isNotEmpty)
-                    ? ListView.builder(
-                        itemCount: provider.latlngList.length,
-                        itemBuilder: (context, index) {
-                          return SizedBox(
-                            height: 100,
-                            child: Row(
+        body: Center(
+            child: (provider.latlngList.isNotEmpty && provider.thumbDataList.isNotEmpty)
+                ? ListView.builder(
+                    itemCount: provider.thumbDataList.length,
+                    itemBuilder: (context, index) {
+                      return SizedBox(
+                        height: 100,
+                        child: Row(
+                          children: <Widget>[
+                            Column(
                               children: <Widget>[
-                                Column(
-                                  children: <Widget>[
-                                    Center(
-                                      child: Text(
-                                          '${provider.latlngList[index].latitude}'),
-                                    ),
-                                    Center(
-                                      child: Text(
-                                          '${provider.latlngList[index].longitude}'),
-                                    ),
-                                  ],
+                                Center(
+                                  child: Text(
+                                      '${provider.latlngList[index].latitude}'),
                                 ),
-                                Image.memory(provider.thumbDataList[index])
+                                Center(
+                                  child: Text(
+                                      '${provider.latlngList[index].longitude}'),
+                                ),
                               ],
                             ),
-                          );
-                        },
-                      )
-                    : Text('NONE')),
-          ],
-        ));
+                            Image.memory(provider.thumbDataList[index])
+                          ],
+                        ),
+                      );
+                    },
+                  )
+                : Text('NONE')));
   }
 }

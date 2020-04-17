@@ -1,5 +1,5 @@
 version: "Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)"
 options: "29542960ba50cbca772d150e259c9ca2"
-build_time: [1587085529, 785247000]
+build_time: [1587137173, 295367000]
 inputs:
   "/Users/nickblaauboer/my_code/wikimap2.0/ios/Runner/AppDelegate.swift": [1587056963, 191797023]

@@ -1,12 +1,12 @@
 # This is a generated file; do not edit or check into version control.
-flutter_plugin_android_lifecycle=C:\\Users\\yupni\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.dartlang.org\\flutter_plugin_android_lifecycle-1.0.6\\
-geocoder=C:\\Users\\yupni\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.dartlang.org\\geocoder-0.2.1\\
-geolocator=C:\\Users\\yupni\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.dartlang.org\\geolocator-5.3.1\\
-google_api_availability=C:\\Users\\yupni\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.dartlang.org\\google_api_availability-2.0.4\\
-google_maps_flutter=C:\\Users\\yupni\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.dartlang.org\\google_maps_flutter-0.5.25+2\\
-image_picker=C:\\Users\\yupni\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.dartlang.org\\image_picker-0.6.5\\
-location_permissions=C:\\Users\\yupni\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.dartlang.org\\location_permissions-2.0.5\\
-photo_manager=C:\\Users\\yupni\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.dartlang.org\\photo_manager-0.5.0\\
-shared_preferences=C:\\Users\\yupni\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.dartlang.org\\shared_preferences-0.5.6+3\\
-shared_preferences_macos=C:\\Users\\yupni\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.dartlang.org\\shared_preferences_macos-0.0.1+6\\
-shared_preferences_web=C:\\Users\\yupni\\AppData\\Roaming\\Pub\\Cache\\hosted\\pub.dartlang.org\\shared_preferences_web-0.1.2+4\\
+flutter_plugin_android_lifecycle=/Users/nickblaauboer/.pub-cache/hosted/pub.dartlang.org/flutter_plugin_android_lifecycle-1.0.6/
+geocoder=/Users/nickblaauboer/.pub-cache/hosted/pub.dartlang.org/geocoder-0.2.1/
+geolocator=/Users/nickblaauboer/.pub-cache/hosted/pub.dartlang.org/geolocator-5.3.1/
+google_api_availability=/Users/nickblaauboer/.pub-cache/hosted/pub.dartlang.org/google_api_availability-2.0.4/
+google_maps_flutter=/Users/nickblaauboer/.pub-cache/hosted/pub.dartlang.org/google_maps_flutter-0.5.25+2/
+image_picker=/Users/nickblaauboer/.pub-cache/hosted/pub.dartlang.org/image_picker-0.6.5/
+location_permissions=/Users/nickblaauboer/.pub-cache/hosted/pub.dartlang.org/location_permissions-2.0.5/
+photo_manager=/Users/nickblaauboer/.pub-cache/hosted/pub.dartlang.org/photo_manager-0.5.0/
+shared_preferences=/Users/nickblaauboer/.pub-cache/hosted/pub.dartlang.org/shared_preferences-0.5.6+3/
+shared_preferences_macos=/Users/nickblaauboer/.pub-cache/hosted/pub.dartlang.org/shared_preferences_macos-0.0.1+6/
+shared_preferences_web=/Users/nickblaauboer/.pub-cache/hosted/pub.dartlang.org/shared_preferences_web-0.1.2+4/

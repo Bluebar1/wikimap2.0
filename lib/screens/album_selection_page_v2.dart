@@ -11,7 +11,7 @@ class AlbumSelectionPageV2 extends StatefulWidget {
 
 class _AspState extends State<AlbumSelectionPageV2> {
   ImageTestingProvider get provider =>
-      Provider.of<ImageTestingProvider>(context);
+      Provider.of<ImageTestingProvider>(context, listen: false);
   @override
   Widget build(BuildContext context) {
     void _goToImageTesting(int index) {
