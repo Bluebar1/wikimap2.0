@@ -18,7 +18,8 @@ class _ImageTestingState extends State<ImageTestingV2> {
           title: Text('Image Testing'),
         ),
         body: Center(
-            child: (provider.latlngList.isNotEmpty && provider.thumbDataList.isNotEmpty)
+            child: (provider.latlngList.isNotEmpty &&
+                    provider.thumbDataList.isNotEmpty)
                 ? ListView.builder(
                     itemCount: provider.thumbDataList.length,
                     itemBuilder: (context, index) {

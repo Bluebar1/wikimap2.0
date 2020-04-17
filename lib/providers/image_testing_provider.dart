@@ -26,6 +26,9 @@ class ImageTestingProvider with ChangeNotifier {
   List<File> _imgFile;
   List<File> get imgFile => _imgFile;
 
+  List<int> _albumGpsCounter;
+  List<int> get albumGpsCounter => _albumGpsCounter;
+
   Exif _exif;
   Exif get exif => _exif;
 
@@ -46,16 +49,56 @@ class ImageTestingProvider with ChangeNotifier {
     _gpsEnts = [];
     _latlngList = [];
     _thumbDataList = [];
+    _albumGpsCounter = [];
     _imgFile = null;
     _exif = null;
     _isDoneLoading = false;
     _getAlbumList();
-    //runPathsNew(6);
   }
 
   void _getAlbumList() async {
     _list = await PhotoManager.getAssetPathList();
     notifyListeners();
+    _getAlbumGpsCountList().then((value) {
+      _albumGpsCounter = value;
+      notifyListeners();
+    });
+    //_albumGpsCounter = await Future.wait(_getAlbumGpsCountList());
+    // int _albumIndex = 0;
+    // //Future.wait(futures)
+    // for (AssetPathEntity album in _list) {
+    //   var temp = await album.assetList;
+    //   for (AssetEntity ent in temp) {
+    //     if (ent.latitude != 0.0) {
+    //       _addOneToIndex(_albumIndex);
+    //     }
+    //   }
+    //   _albumIndex++;
+    //   //runAlbumGpsCount()
+    // }
+  }
+
+  Future<List<int>> _getAlbumGpsCountList() async {
+    int _albumIndex = 0;
+    List<int> tempInt = List.filled(_list.length, 0);
+    for (AssetPathEntity album in _list) {
+      var temp = await album.assetList;
+      for (AssetEntity ent in temp) {
+        if (ent.latitude != 0.0) {
+          tempInt[_albumIndex]++;
+          //_addOneToIndex(_albumIndex);
+        }
+      }
+      _albumIndex++;
+      //runAlbumGpsCount()
+    }
+    return tempInt;
+  }
+
+  void _addOneToIndex(int index) {
+    (_albumGpsCounter[index] != null)
+        ? _albumGpsCounter[index]++
+        : print('ADDED TO INDEX ERROR!!!!!');
   }
 
   //called when an album is selected
@@ -67,15 +110,11 @@ class ImageTestingProvider with ChangeNotifier {
       print('${element.name}');
     });
     _entityList = await _list[index].assetList;
-    //LatLng tempL;
     for (AssetEntity ent in _entityList) {
       (ent.latitude != 0)
           ? addGpsEnt(
               ent, Position(latitude: ent.latitude, longitude: ent.longitude))
           : print('Entity ID: ${ent.id} did not have gps data');
-
-      // tempL = await ent.latlngAsync();
-      // (tempL != null) ? addGpsEnt(ent, tempL) : print('no gps found');
     }
   }
 
