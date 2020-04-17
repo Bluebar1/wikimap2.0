@@ -57,42 +57,15 @@ class ImageTestingProvider with ChangeNotifier {
     _latlngList = [];
     _gpsEnts = [];
     _entityList = [];
-    //notifyListeners();
-    // _entityList.clear();
-    // _latlngList.clear();
-    // _gpsEnts.clear();
-    //_list = await PhotoManager.getAssetPathList();
     _list.forEach((element) {
       print('${element.name}');
     });
     _entityList = await _list[index].assetList;
-    // _entityList.forEach((element) {
-    //   print('ENTITY LIST PRINT::: ${element.id}');
-    //   exifFromEntity(element);
-    // });
-    //exifFromEntity(_entityList[0]);
     LatLng tempL;
-    for(AssetEntity ent in _entityList) {
+    for (AssetEntity ent in _entityList) {
       tempL = await ent.latlngAsync();
-      (tempL != null)
-        ? addGpsEnt(ent, tempL)
-        : print('no gps found');
-      //exifFromEntity(ent);
+      (tempL != null) ? addGpsEnt(ent, tempL) : print('no gps found');
     }
-
-  }
-
-  void exifFromEntity(AssetEntity element) async {
-    LatLng tempLL;
-    print('EXIF FROM ENTITY CALLED');
-    //return await element.latlngAsync();
-    tempLL = await element.latlngAsync();
-    (tempLL != null)
-    ? addGpsEnt(element, tempLL)
-    : print('no gps found');
-
-    //return tempLL;
-    //print(tempLL.latitude);
   }
 
   void addGpsEnt(AssetEntity element, LatLng tempLL) {
@@ -110,6 +83,17 @@ class ImageTestingProvider with ChangeNotifier {
     _gpsEnts.add(element);
     notifyListeners();
   }
+
+  // void exifFromEntity(AssetEntity element) async {
+  //   LatLng tempLL;
+  //   print('EXIF FROM ENTITY CALLED');
+  //   //return await element.latlngAsync();
+  //   tempLL = await element.latlngAsync();
+  //   (tempLL != null) ? addGpsEnt(element, tempLL) : print('no gps found');
+
+  //   //return tempLL;
+  //   //print(tempLL.latitude);
+  // }
 
   //void addElement(AssetEntity)
 
@@ -144,7 +128,7 @@ class ImageTestingProvider with ChangeNotifier {
     print('CHECK ALL EXIF HAS BEEN CALLED');
     print('test');
     print('${_imgFile[0].path}');
-    _imgFile.forEach((file) { 
+    _imgFile.forEach((file) {
       print('CHECK ALL EXIF FILE::: ${file.path}');
       _checkExifOf(file);
     });
@@ -157,43 +141,31 @@ class ImageTestingProvider with ChangeNotifier {
     Map<String, IfdTag> data;
     try {
       print('data about to be called');
-      data = await readExifFromFile(file);  
-    } catch(err) {
+      data = await readExifFromFile(file);
+    } catch (err) {
       print('exif catch error');
       tempEx = null;
     }
-    (data != null)
-        ? tempEx = Exif.fromJson(data)
-        : print('no exif found');
-    (tempEx.gpsLatitude != null)
-        ? _exList.add(tempEx)
-        : print('no lat found');
-      
+    (data != null) ? tempEx = Exif.fromJson(data) : print('no exif found');
+    (tempEx.gpsLatitude != null) ? _exList.add(tempEx) : print('no lat found');
 
     notifyListeners();
-
-    
-     
   }
 
   void _runMoreFiles(AssetEntity element) async {
     print('RUN MORE FILES HAS BEEN CALLED');
     File tempFile;
     tempFile = await element.file;
-    (tempFile != null)
-        ? _imgFile.add(tempFile)
-        : print('MORE FILES ERROR');
+    (tempFile != null) ? _imgFile.add(tempFile) : print('MORE FILES ERROR');
   }
 
   void _runFile() async {
     // File tempfile;
-    // tempfile = await 
+    // tempfile = await
     _imgFile[0] = await _entityList[0].file;
     //_selectFilesWithGPS();
     _runExif();
   }
-
-  
 
   _runExif() async {
     print('print exif called');
@@ -201,7 +173,6 @@ class ImageTestingProvider with ChangeNotifier {
       Map<String, IfdTag> data = await readExifFromFile(_imgFile[0]);
       _exif = Exif.fromJson(data);
       notifyListeners();
-    
     } catch (err) {
       print('EXIF ERROR');
     }

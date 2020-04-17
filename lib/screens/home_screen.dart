@@ -11,6 +11,7 @@ import 'package:wiki_map/screens/album_selection_page.dart';
 import 'package:wiki_map/screens/bottom_sheet.dart';
 import 'package:wiki_map/screens/image_selection.dart';
 import 'package:wiki_map/screens/image_testing.dart';
+import 'package:wiki_map/screens/provider_testing_page.dart';
 import 'package:wiki_map/screens/saved_pages.dart';
 import 'package:wiki_map/screens/settings.dart';
 
@@ -51,6 +52,23 @@ class HomeScreen extends StatelessWidget {
                 create: (context) => ImageTestingProvider(),
                 child: AlbumSelectionPage(),
               )));
+    }
+
+    void _goToProviderTesting() {
+      Navigator.push(context,
+          MaterialPageRoute(builder: (BuildContext context) {
+        return Scaffold();
+      }));
+    }
+
+    void _goToOldProviderTesting() {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => ChangeNotifierProvider<ImageTestingProvider>(
+                    create: (context) => ImageTestingProvider(),
+                    child: AlbumSelectionPage(),
+                  )));
     }
 
     _showAddressErrorFlushBar() {
@@ -162,6 +180,20 @@ class HomeScreen extends StatelessWidget {
                 child: Text('Image Testing'),
                 onPressed: () {
                   _goToAlbumSelection();
+                },
+              ),
+              RaisedButton(
+                color: Colors.purpleAccent,
+                child: Text('Provider Testing'),
+                onPressed: () {
+                  _goToProviderTesting();
+                },
+              ),
+              RaisedButton(
+                color: Colors.purpleAccent,
+                child: Text('Old provider testing'),
+                onPressed: () {
+                  _goToOldProviderTesting();
                 },
               ),
             ],
