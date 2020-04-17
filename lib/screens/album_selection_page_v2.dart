@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wiki_map/providers/image_testing_provider.dart';
 import 'package:wiki_map/screens/image_testing.dart';
+import 'package:wiki_map/screens/image_testing_v2.dart';
 
 class AlbumSelectionPageV2 extends StatefulWidget {
   @override
@@ -16,7 +17,7 @@ class _AspState extends State<AlbumSelectionPageV2> {
     void _goToImageTesting(int index) {
       provider.runPathsNew(index);
       Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => ImageTesting(provider)));
+          .push(MaterialPageRoute(builder: (_) => ImageTestingV2()));
     }
 
     return Scaffold(
