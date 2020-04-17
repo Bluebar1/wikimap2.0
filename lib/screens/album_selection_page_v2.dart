@@ -18,7 +18,8 @@ class _AspState extends State<AlbumSelectionPageV2> {
       provider.runPathsNew(index);
       Navigator.push(context,
           MaterialPageRoute(builder: (BuildContext context) {
-        return ImageTestingV2();
+        return ChangeNotifierProvider<ImageTestingProvider>.value(
+            value: provider, child: ImageTestingV2());
       }));
       // Navigator.of(context)
       //     .push(MaterialPageRoute(builder: (_) => ImageTestingV2()));
